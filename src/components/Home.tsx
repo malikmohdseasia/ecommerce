@@ -6,7 +6,6 @@ import {
   ArrowCol,
   ArrowIcon,
   CompereIcon,
-  DotIcons,
   fifty,
   LikeIcon,
   newIcon,
@@ -111,9 +110,9 @@ const Home = () => {
   ];
 
   return (
-    <div className="w-container mx-auto mb-12.5">
+    <div className="mb-12.5">
       <div
-        className={`bg-[url(./assets/home.jpg)] h-screen bg-cover bg-center `}
+        className={`bg-[url(./assets/home.jpg)] h-screen bg-cover bg-center w-full`}
       >
         <div className="flex justify-end">
           <div></div>
@@ -156,12 +155,12 @@ const Home = () => {
         ))}
       </div>
 
-      <div>
+      <div className="">
         <h1 className="font-poppins font-bold text-[#3A3A3A] text-[40px] text-center mt-14">
           Our Products
         </h1>
 
-        <div className="mt-8 flex flex-wrap justify-items-center gap-2">
+        <div className="mt-8 flex flex-wrap justify-center gap-8">
           {items2.map((item, index) => (
             <div key={index} className="bg-[#F4F5F7] mb-8 relative group">
               <div className="relative">
@@ -262,10 +261,10 @@ const Home = () => {
           <img
             src={sliderImages[currentSlide]}
             alt=""
-            className="w-full transition-all duration-500 h-90"
+            className="w-70 transition-all duration-500 h-104 "
           />
 
-          <div className="mt-10 flex gap-2">
+          <div className="mt-10 flex gap-2 ">
             {sliderImages.map((_, index) => (
               <span
                 key={index}
@@ -284,7 +283,7 @@ const Home = () => {
                 currentSlide === sliderImages.length - 1 ? 0 : currentSlide + 1
               )
             }
-            className="absolute top-1/2 -right-10 cursor-pointer"
+            className="absolute top-1/2 right-0   cursor-pointer "
           >
             {ArrowIcon}
           </button>

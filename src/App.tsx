@@ -6,6 +6,9 @@ import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import LoginRoute from "./components/auth/LoginRoute";
 import NotFound from "./components/NotFound";
+import SignUp from "./components/auth/SignUp";
+import Shop from "./components/Shop";
+import SingleProduct from "./components/SingleProduct";
 
 const App = () => {
   return (
@@ -22,6 +25,9 @@ const App = () => {
               </LoginRoute>
             }
           />
+
+          <Route path="/signup" element={<SignUp />} />
+
           <Route element={<Layout />}>
             <Route
               path="/home"
@@ -31,10 +37,25 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-              <Route path="*" element={<NotFound/>} />
-          </Route>
+            <Route
+              path="/shop"
+              element={
+                <ProtectedRoute>
+                  <Shop />
+                </ProtectedRoute>
+              }
+            />
 
-        
+            <Route
+              path="/singleproduct"
+              element={
+                <ProtectedRoute>
+                  <SingleProduct/>
+                </ProtectedRoute>
+              }
+            /> 
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

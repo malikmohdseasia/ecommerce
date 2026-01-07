@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import LoginImg from "../../assets/Login/img.png";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,7 +33,6 @@ const Login = () => {
 
     const strongPwdRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
 
-
     if (!value) {
       setErrors((prev) => ({ ...prev, password: "Password is required" }));
     } else if (!strongPwdRegex.test(value)) {
@@ -46,12 +45,15 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     if (!errors.email && !errors.password && email && password) {
-        localStorage.setItem('user', JSON.stringify({email:email, password:password}))
-     toast.success('Successfully Login!');
-     navigate("/home")
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ email: email, password: password })
+      );
+      toast.success("Successfully Login!");
+      navigate("/home");
     }
   };
 
@@ -65,7 +67,9 @@ const Login = () => {
           </p>
 
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1 font-poppins">Email</label>
+            <label className="block text-sm font-medium mb-1 font-poppins">
+              Email
+            </label>
             <input
               type="email"
               value={email}
@@ -78,7 +82,9 @@ const Login = () => {
               placeholder="example@email.com"
             />
             {errors.email && (
-              <p className="text-red-500 text-xs mt-1 font-poppins">{errors.email}</p>
+              <p className="text-red-500 text-xs mt-1 font-poppins">
+                {errors.email}
+              </p>
             )}
           </div>
 
@@ -123,15 +129,19 @@ const Login = () => {
           >
             Login
           </button>
+          <div>
+            <p className="text-sm text-center mt-4 font-poppins">
+              Don't have an account ?
+              <Link to="/signup" className="font-semibold underline">
+                Sign Up
+              </Link>
+            </p>
+          </div>
         </form>
       </div>
 
       <div className="hidden md:flex items-center justify-end bg-gray-50 w-1/2">
-        <img
-          src={LoginImg}
-          alt="Login"
-          className="w-3/4 object-contain"
-        />
+        <img src={LoginImg} alt="Login" className="w-3/4 object-contain" />
       </div>
     </div>
   );
