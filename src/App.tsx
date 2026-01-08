@@ -9,8 +9,14 @@ import NotFound from "./components/NotFound";
 import SignUp from "./components/auth/SignUp";
 import Shop from "./components/Shop";
 import SingleProduct from "./components/SingleProduct";
+import { useState } from "react";
+import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 
 const App = () => {
+
+  const [cartArr, setCartArr] = useState<any>([]);
+
   return (
     <>
       <BrowserRouter>
@@ -28,7 +34,7 @@ const App = () => {
 
           <Route path="/signup" element={<SignUp />} />
 
-          <Route element={<Layout />}>
+          <Route element={<Layout cartArr={cartArr} setCartArr={setCartArr} />}>
             <Route
               path="/home"
               element={
@@ -47,13 +53,32 @@ const App = () => {
             />
 
             <Route
-              path="/singleproduct"
+              path="/shop/:id"
               element={
                 <ProtectedRoute>
-                  <SingleProduct/>
+                  <SingleProduct cartArr={cartArr} setCartArr={setCartArr} />
                 </ProtectedRoute>
               }
-            /> 
+            />
+
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <Cart cartArr={cartArr} setCartArr={setCartArr} />
+                </ProtectedRoute>
+              }
+            />
+
+               <Route
+              path="/checkout"
+              element={
+                <ProtectedRoute>
+                  <Checkout />
+                </ProtectedRoute>
+              }
+            />
+
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  ArrowIconRight,
   AwardIcon,
   CompereIcon,
   Filter,
@@ -11,6 +10,8 @@ import {
   Support,
   Warranty,
 } from "../assets/Icons";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 
 const Shop = () => {
   const [products, setProducts] = useState<any>([]);
@@ -33,6 +34,10 @@ const Shop = () => {
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
   const isLastPage = currentPage === totalPages;
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  const path = location.pathname.slice(1)
 
   return (
     <div>
@@ -42,9 +47,17 @@ const Shop = () => {
         <div className="relative z-20 flex flex-col items-center justify-center ">
           <h1 className="text-[#000000] text-[48px] font-medium">Shop</h1>
           <div className="flex items-center">
-            <p className="font-poppins font-medium">Home</p>
-            {ArrowIconRight}
-            <p className="font-poppins font-light">Shop</p>
+            
+            <Breadcrumb  aria-label="Default breadcrumb example">
+              <BreadcrumbItem href="/home" >
+                <p className="font-poppins font-medium">Home</p>
+              </BreadcrumbItem>
+      
+
+              <BreadcrumbItem href="/shop"  >
+            <p className="font-poppins font-light text-[16px]">{path}</p>
+              </BreadcrumbItem>
+            </Breadcrumb>
           </div>
         </div>
       </div>
@@ -76,8 +89,11 @@ const Shop = () => {
       </div>
 
       <div className="mt-15.75 flex flex-wrap justify-center gap-8">
-        {currentProducts.map((item: any, index: any) => (
-          <div key={index} className="bg-[#F4F5F7] relative group w-60 h-90 ">
+        {currentProducts && currentProducts?.map((item: any, index: any) => (
+          <div key={index} className="bg-[#F4F5F7] relative group w-60 h-90 
+          "
+            onClick={() => navigate(`/shop/${item.id}`)}
+          >
             <div className="relative">
               <img src={item.image} alt="product" className="w-60 h-60 p-5" />
 
@@ -88,7 +104,7 @@ const Shop = () => {
 
                 <div className="mt-2 flex gap-4 items-center">
                   <p className="font-poppins text-[#3A3A3A] font-semibold">
-                    ${item.price}
+                    ${Math.round(item.price)}
                   </p>
                 </div>
               </div>
@@ -130,11 +146,10 @@ const Shop = () => {
           <button
             key={index}
             onClick={() => setCurrentPage(index + 1)}
-            className={`cursor-pointer font-poppins text-[20px] w-15 h-15 rounded-[10px]   ${
-              currentPage === index + 1
+            className={`cursor-pointer font-poppins text-[20px] w-15 h-15 rounded-[10px]   ${currentPage === index + 1
                 ? "bg-[#B88E2F] text-white"
                 : "bg-[#F9F1E7]"
-            }`}
+              }`}
           >
             {index + 1}
           </button>
@@ -143,17 +158,16 @@ const Shop = () => {
           onClick={() => setCurrentPage((prev: any) => prev + 1)}
           disabled={isLastPage}
           className={` w-15 h-15 rounded-[10px] 
-    ${
-      isLastPage
-        ? "bg-[#B88E2F] text-white cursor-not-allowed"
-        : "bg-[#F9F1E7]"
-    }`}
+    ${isLastPage
+              ? "bg-[#B88E2F] text-white cursor-not-allowed"
+              : "bg-[#F9F1E7]"
+            }`}
         >
           Next
         </button>
       </div>
 
-      <div className="bg-[#FAF3EA] py-25 px-13.25 flex justify-between items-center gap-3 mt-21.25">
+      <div className="bg-[#FAF3EA] py-25 px-13.25 flex justify-between items-center gap-3 mt-21.25 ">
         <div className="flex items-center gap-2.5">
           <div>{AwardIcon}</div>
           <div>
