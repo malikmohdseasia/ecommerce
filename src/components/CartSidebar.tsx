@@ -22,8 +22,8 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr }: any) => {
 
     return (
         <>
-            {cartShow && <div className="fixed z-50 w-104.25 top-0 right-0 bg-white px-5 py-7 ">
-                <div className="flex justify-between items-center">
+            {cartShow && <div className="fixed z-50 top-0 right-0 bg-white px-5 py-7 ">
+                <div className="flex justify-between items-center gap-10 lg:gap-0">
                     <h1 className="font-poppins font-semibold text-[24px]">Shopping Cart</h1>
                     <button className="cursor-pointer"
                         onClick={() => setCartShow(false)}
@@ -73,7 +73,7 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr }: any) => {
 
 
                 <div className="mt-30.25">
-                    <div className="flex gap-25.25">
+                    <div className="flex flex-col lg:flex-row gap-5 lg:gap-25.25">
                         <h1 className="font-poppins ">Subtotal</h1>
                         <p className="font-poppins text-[#B88E2F] font-semibold">
                             Rs. {subtotal}
@@ -83,7 +83,7 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr }: any) => {
 
                     <hr className="border border-hrLine mt-5.75" />
 
-                    <div className="flex items-center gap-3.5 mt-6.5">
+                    <div className="flex flex-col lg:flex-row items-center gap-3.5 mt-6.5">
                         <button className="py-1.5 px-7.5 border rounded-full font-poppins text-[12px] cursor-pointer"
                             onClick={() => {
                                 navigate('/cart')

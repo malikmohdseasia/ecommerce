@@ -1,13 +1,8 @@
 import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
-import {
-    AwardIcon,
-    DeleteIcon,
-    Shipping,
-    Support,
-    Warranty,
-} from "../assets/Icons";
 import Logo from "../assets/Navbar/logo.png";
 import { useNavigate } from "react-router-dom";
+import Award from "./Award";
+import { DeleteIcon } from "../assets/Icons";
 
 const Cart = ({ cartArr, setCartArr }: any) => {
     
@@ -51,10 +46,10 @@ const Cart = ({ cartArr, setCartArr }: any) => {
                       </div>
                     </div>
                   </div>
-            <div className="px-25 py-18">
-                <div className="flex justify-between gap-7.5">
-                    <div className="w-full">
-                        <div className="bg-[#F9F1E7] flex justify-around  py-3.75 w-full ">
+            <div className="px-5 lg:px-25 lg:py-18">
+                <div className="flex flex-col lg:flex-row justify-between gap-7.5">
+                    <div className="w-full ">
+                        <div className="bg-[#F9F1E7] lg:flex justify-around  py-3.75 w-full hidden ">
                             <h1 className="font-poppins">Product</h1>
                             <h1 className="font-poppins">Price</h1>
                            <div className="flex gap-9 items-center">
@@ -66,14 +61,14 @@ const Cart = ({ cartArr, setCartArr }: any) => {
                       {
                         cartArr.length>0 ?  cartArr?.map((item: any) => (
 
-                            <div className="flex items-center justify-center">
+                            <div className="flex flex-col lg:flex-row items-center justify-center">
 
                             <div
                                 key={item.id}
-                                className="flex gap-22 items-center mt-13.75 "
+                                className="flex flex-col lg:flex-row gap-22 items-center mt-13.75 "
                                 >
-                              <div className="flex items-center gap-9.5">
-                                  <img src={item.image} alt="" className="w-27 h-26.25 object-contain" />
+                              <div className="flex flex-col lg:flex-row items-center gap-9.5">
+                                  <img src={item.image} alt="" className="w-full lg:w-27 lg:h-26.25 object-contain" />
 
                                 <h1 className="font-poppins text-footer w-20">
                                     {item.title}
@@ -112,12 +107,12 @@ const Cart = ({ cartArr, setCartArr }: any) => {
                                 </button>
                                  </div>
                                 </div>
-                        )):<div className="flex items-center justify-center h-full font-poppins text-footer"> <h1>No Item in cart!</h1> </div>
+                        )):<div className="flex items-center justify-center h-full font-poppins text-footer"> <h1 className="font-poppins mt-5">No Item in cart!</h1> </div>
                       }
                     </div>
 
-                    <div className="bg-[#F9F1E7] px-21.25">
-                        <h1 className="pt-3.75 font-semibold text-[32px] font-poppins">
+                    <div className="bg-[#F9F1E7] px-5 lg:px-21.25">
+                        <h1 className="pt-3.75 font-semibold text-[18px] lg:text-[32px] font-poppins">
                             Cart Totals
                         </h1>
 
@@ -135,8 +130,8 @@ const Cart = ({ cartArr, setCartArr }: any) => {
                             </h2>
                         </div>
 
-                        <div className="pt-12 pb-20 cursor-pointer">
-                            <button className="cursor-pointer w-55.5 h-14.5 border rounded-[15px] font-poppins"
+                        <div className="pt-12 pb-20 cursor-pointer flex justify-center">
+                            <button className="cursor-pointer  w-55.5  h-14.5 border rounded-[15px] font-poppins"
                                 onClick={()=>navigate("/checkout")}
                             >
                                 Check Out
@@ -146,55 +141,7 @@ const Cart = ({ cartArr, setCartArr }: any) => {
                 </div>
             </div>
 
-            <div className="bg-[#FAF3EA] py-25 px-13.25 flex justify-between items-center gap-3">
-                <div className="flex items-center gap-2.5">
-                    {AwardIcon}
-                    <div>
-                        <h1 className="text-[25px] font-poppins font-semibold">
-                            High Quality
-                        </h1>
-                        <p className="text-[20px] text-[#898989]">
-                            crafted from top materials
-                        </p>
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                    {Warranty}
-                    <div>
-                        <h1 className="text-[25px] font-poppins font-semibold">
-                            Warranty Protection
-                        </h1>
-                        <p className="text-[20px] text-[#898989]">
-                            Over 2 years
-                        </p>
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                    {Shipping}
-                    <div>
-                        <h1 className="text-[25px] font-poppins font-semibold">
-                            Free Shipping
-                        </h1>
-                        <p className="text-[20px] text-[#898989]">
-                            Order over 150 $
-                        </p>
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                    {Support}
-                    <div>
-                        <h1 className="text-[25px] font-poppins font-semibold">
-                            24 / 7 Support
-                        </h1>
-                        <p className="text-[20px] text-[#898989]">
-                            Dedicated support
-                        </p>
-                    </div>
-                </div>
-            </div>
+           <Award/>
         </div>
     );
 };

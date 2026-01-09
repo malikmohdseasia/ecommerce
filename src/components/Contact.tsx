@@ -1,6 +1,7 @@
 import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 import LOGO from "../assets/Navbar/logo.png";
-import { LocationIcon, PhoneIcon, WatchIcon } from "../assets/Icons";
+import {  LocationIcon, PhoneIcon, WatchIcon } from "../assets/Icons";
+import Award from "./Award";
 
 const Contact = () => {
     return (
@@ -28,34 +29,34 @@ const Contact = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center px-80 text-center mt-24.5">
-                <h1 className="font-poppins font-semibold text-[36px]">Get In Touch With Us</h1>
-                <p className="font-poppins text-footer">For More Information About Our Product & Services. Please Feel Free To Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</p>
+            <div className="flex flex-col items-center justify-center px-5 lg:px-80 text-center mt-24.5">
+                <h1 className="font-poppins font-semibold text-[25px] lg:text-[36px]">Get In Touch With Us</h1>
+                <p className="font-poppins text-footer mt-2 lg:mt-0">For More Information About Our Product & Services. Please Feel Free To Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</p>
             </div>
 
-            <div className="mt-3.5 flex  justify-center px-47.75 gap-7.5">
+            <div className="mt-20.5 flex flex-col lg:flex-row justify-center lg:px-47.75 gap-7.5">
 
-                <div className="w-1/2 pl-14.5 pr-18.75 flex flex-col gap-10.5">
+                <div className="w-full lg:w-1/2 pl-14.5 pr-18.75 flex flex-col  gap-10.5">
 
-                <div className="flex gap-7.5 ">
+                <div className="flex flex-col lg:flex-row gap-7.5 items-center lg:items-start">
                 
                     {LocationIcon}
-                    <div className="ml-4">
-                        <h1 className="font-poppins text-[24px] font-medium">Address</h1>
-                        <p className="font-poppins">236 5th SE Avenue, New York NY10000, United States</p>
+                    <div className="ml-0 lg:ml-4 ">
+                        <h1 className="font-poppins text-[24px] font-medium text-center lg:text-start">Address</h1>
+                        <p className="font-poppins text-center lg:text-start">236 5th SE Avenue, New York NY10000, United States</p>
                     </div>
                 </div>
 
-                  <div className="flex gap-7.5">
+                  <div className="flex flex-col lg:flex-row gap-7.5 items-center lg:items-start text-center lg:text-start">
                     {PhoneIcon}
                     <div>
                         <h1 className="font-poppins text-[24px] font-medium">Phone</h1>
-                       <p>Mobile: +(84) 546-6789</p>
-                       <p>Hotline: +(84) 456-6789</p>
+                       <p className="font-poppins">Mobile: +(84) 546-6789</p>
+                       <p className="font-poppins">Hotline: +(84) 456-6789</p>
                     </div>
                 </div>
 
-                  <div className="flex gap-7.5">
+                  <div className="flex flex-col lg:flex-row gap-7.5 items-center lg:items-start text-center lg:text-start">
                     {WatchIcon}
                     <div>
                         <h1 className="font-poppins text-[24px] font-medium">Working Time</h1>
@@ -65,35 +66,36 @@ const Contact = () => {
                 </div>
                 </div>
 
-               <div className="border w-1/2">
+               <div className="w-full lg:w-1/2 text-center lg:text-start p-2 lg:p-0">
                  <div className="flex flex-col gap-9" >
 
                 <div className="flex flex-col gap-5.5">
                         <label className="font-poppins font-medium">Your name</label>
-                        <input type="text" name="" id="" className="border border-footer rounded-[10px] h-18.75  px-7.75 text-footer" 
+                        <input type="text" name="" id="" className="border border-footer rounded-[10px] h-18.75  px-7.75 outline-none text-footer" 
                         placeholder="Abc"
                         />
                     </div>
                     <div className="flex flex-col gap-5.5">
                         <label className="font-poppins font-medium">Email address</label>
-                        <input type="text" name="" id="" placeholder="Abc@def.com" className="border border-footer rounded-[10px] h-18.75  px-7.75 text-footer" /
+                        <input type="text" name="" id="" placeholder="Abc@def.com" className="border border-footer rounded-[10px] h-18.75  px-7.75 outline-none text-footer" /
                     
                         >
                     </div>
                     <div className="flex flex-col gap-5.5">
                         <label className="font-poppins font-medium">Subject</label>
-                        <input type="text" name="" id="" placeholder="This is an optional" className="border border-footer rounded-[10px] h-18.75  px-7.75 text-footer" />
+                        <input type="text" name="" id="" placeholder="This is an optional" className="border border-footer rounded-[10px] h-18.75  px-7.75 outline-none text-footer" />
                     </div>
                     <div className="flex flex-col gap-5.5">
                         <label className="font-poppins font-medium">Message</label>
-                        <input type="text" name="" id="" placeholder="Hi! i’d like to ask about" className="border border-footer rounded-[10px] h-30  px-7.75 text-footer" />
+                        <input type="text" name="" id="" placeholder="Hi! i’d like to ask about" className="border border-footer rounded-[10px] h-30  px-7.75 outline-none text-footer" />
                     </div>
 
 
                 </div>
-               <div className="mt-12.25"> <button className="font-poppins text-white bg-[#B88E2F] w-59.25 h-13.75">Submit</button></div>
+               <div className="mt-12.25"> <button className="cursor-pointer font-poppins text-white bg-[#B88E2F] w-59.25 h-13.75">Submit</button></div>
                </div>
             </div>
+           <Award/>
         </div>
     )
 }

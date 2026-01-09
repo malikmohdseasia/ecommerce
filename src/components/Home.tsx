@@ -114,21 +114,21 @@ const Home = () => {
       <div
         className={`bg-[url(./assets/home.jpg)] h-screen bg-cover bg-center w-full`}
       >
-        <div className="flex justify-end">
+        <div className="flex justify-center ml-15 lg:ml-0 lg:justify-end">
           <div></div>
-          <div className="bg-[#FFF3E3] pt-15.5 pb-9.25 mr-14.5 pl-9.75 pr-10.75 mt-38.25">
+          <div className="lg:bg-[#FFF3E3] bg-transparent  pt-15.5 pb-9.25 mr-14.5 pl-9.75 pr-10.75 mt-38.25 text-center lg:text-start">
             <h1 className="font-semibold font-poppins text-home">
               New Arrival
             </h1>
-            <h2 className="font-bold font-poppins text-[52px]  text-[#B88E2F]">
+            <h2 className="font-bold font-poppins text-[20px] lg:text-[52px]  text-[#B88E2F]">
               Discover Our <br /> New Collection
             </h2>
-            <p className="font-medium text-[18px] text-home">
+            <p className="font-medium text-[12px] lg:text-[18px] text-home">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut <br />{" "}
               elit tellus, luctus nec ullamcorper mattis.
             </p>
 
-            <button className="text-[#FFFFFF] cursor-pointer bg-[#B88E2F] py-6.25 px-18 font-poppins font-bold mt-11.5">
+            <button className="text-[#FFFFFF] cursor-pointer bg-[#B88E2F] w-25 h-10 lg:w-55.5 lg:h-18.5 font-poppins font-bold mt-2 lg:mt-11.5 ">
               BUY NOW
             </button>
           </div>
@@ -136,19 +136,19 @@ const Home = () => {
       </div>
 
       <div className="mt-14">
-        <h1 className="font-bold font-poppins text-[32px] text-home text-center">
+        <h1 className="font-bold font-poppins text-[20px] lg:text-[32px] text-home text-center">
           Browse The Range
         </h1>
-        <p className="font-poppins text-[20px] text-details text-center">
+        <p className="font-poppins text-[10px] lg:text-[20px] text-details text-center">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
 
-      <div className="mt-15.5 flex gap-5 items-center justify-center">
+      <div className=" mt-5 lg:mt-15.5 flex flex-col lg:flex-row  gap-5 items-center justify-center w-60 lg:w-full mx-auto">
         {items1.map((item, index) => (
           <div key={index} className="flex flex-col gap-7.5 items-center">
             <img src={item.img} alt="" />
-            <p className="font-poppins font-semibold text-[24px] text-home">
+            <p className="font-poppins font-semibold text-[18px] lg:text-[24px] text-home">
               {item.title}
             </p>
           </div>
@@ -156,7 +156,7 @@ const Home = () => {
       </div>
 
       <div className="">
-        <h1 className="font-poppins font-bold text-[#3A3A3A] text-[40px] text-center mt-14">
+        <h1 className="font-poppins font-bold text-[#3A3A3A] text-[20px] lg:text-[40px] text-center mt-14">
           Our Products
         </h1>
 
@@ -166,20 +166,20 @@ const Home = () => {
               <div className="relative">
                 <img src={item.img} alt="product" />
 
-                <div className="py-4 px-5">
-                  <h1 className="font-poppins font-semibold text-[24px] text-[#3A3A3A] mt-4">
+                <div className="py-4 px-5 text-center lg:text-start">
+                  <h1 className="font-poppins font-semibold text-lg lg:text-[24px] text-[#3A3A3A] mt-4 ">
                     {item.title}
                   </h1>
 
-                  <p className="font-poppins font-medium text-[#898989]">
+                  <p className="font-poppins font-medium text-[#898989] text-[12px] lg:text-[16px]">
                     {item.desc}
                   </p>
 
-                  <div className="mt-2 flex gap-4 items-center">
-                    <p className="font-poppins text-[#3A3A3A] font-semibold">
+                  <div className={`mt-2 flex flex-col text-center lg:flex-row lg:justify-between`}>
+                    <p className="font-poppins text-[#3A3A3A] font-semibold text-center text-[12px] lg:text-[16px]">
                       {item.price1}
                     </p>
-                    <p className="font-poppins text-[#B0B0B0] line-through">
+                    <p className="font-poppins text-[#B0B0B0] line-through  text-center text-[12px] lg:text-[16px]">
                       {item.price2}
                     </p>
                   </div>
@@ -219,21 +219,21 @@ const Home = () => {
         </div>
       </div>
       <div className="pb-17.25 flex items-center justify-center ">
-        <button className="cursor-pointer font-poppins text-[#B88E2F] font-semibold border border-[#B88E2F] py-3 px-18.5">
+        <button className="cursor-pointer font-poppins text-[#B88E2F] font-semibold border border-[#B88E2F] px-10  py-2 lg:py-3 lg:px-18.5">
           Show More
         </button>
       </div>
 
-      <div className="bg-[#FCF8F3]  flex  items-center justify-center pl-25 gap-6 py-11">
-        <div>
-          <h1 className="text-[#3A3A3A] font-poppins font-bold text-[40px]">
+      <div className="bg-[#FCF8F3]  flex flex-col lg:flex-row  items-center justify-center p-5 lg:pl-25 gap-6 lg:py-11">
+        <div className="flex flex-col items-center lg:block">
+          <h1 className="text-[#3A3A3A] font-poppins font-bold text-[16px] lg:text-[40px] text-center lg:text-start">
             50+ Beautiful rooms inspiration
           </h1>
-          <p className="font-poppins text-[#3A3A3A]">
+          <p className="font-poppins text-[#3A3A3A] text-center lg:text-start">
             Our designer already made a lot of beautiful prototipe of rooms that
             inspire you
           </p>
-          <button className="bg-[#B88E2F] text-white font-semibold font-poppins py-3 px-9 mt-6.25">
+          <button className="bg-[#B88E2F] text-white font-semibold font-poppins px-10 py-2 lg:py-3 lg:px-9 mt-6.25">
             Explore More
           </button>
         </div>
@@ -261,14 +261,14 @@ const Home = () => {
           <img
             src={sliderImages[currentSlide]}
             alt=""
-            className="w-70 transition-all duration-500 h-104 "
+            className="w-full px-5 lg:px-0 lg:w-70 transition-all duration-500 h-100  "
           />
 
           <div className="mt-10 flex gap-2 ">
             {sliderImages.map((_, index) => (
               <span
                 key={index}
-                className={`w-3 h-3 rounded-full ${currentSlide === index
+                className={` ml-4 lg:ml-0 w-3 h-3 rounded-full ${currentSlide === index
                     ? "bg-[#B88E2F] border-[#B88E2F]"
                     : "bg-gray-300"
                   }`}
@@ -290,21 +290,21 @@ const Home = () => {
       </div>
 
       <div className="mt-16.75">
-        <h1 className="font-poppins text-[#616161] text-[20px] font-semibold text-center">
+        <h1 className="font-poppins text-[#616161] font-semibold text-center text-[12px] lg:text-[20px]">
           Share your setup with
         </h1>
-        <h1 className="font-Montserrat text-[40px] font-bold text-center">
+        <h1 className="font-Montserrat font-bold text-center text-[20px] lg:text-[40px] ">
           #FuniroFurniture
         </h1>
-        <div className="mt-10 flex justify-center overflow-hidden">
+        <div className="mt-2 lg:mt-10 flex justify-center overflow-hidden">
 
           <div className="flex flex-col gap-4 mt-12 mr-10">
             <div className="flex gap-4">
-              <img src={IMG36} className="h-95.5" />
-              <img src={IMG38} className="h-78 w-112.75" />
+              <img src={IMG36} className="h-95.5 object-contain" />
+              <img src={IMG38} className="h-78 w-112.75 object-contain" />
             </div>
             <div className="flex gap-4">
-              <img src={IMG37} className="h-80.75" />
+              <img src={IMG37} className="h-80.75 object-contain" />
               <img src={IMG39} className="h-60.5 w-86" />
             </div>
           </div>
@@ -315,12 +315,12 @@ const Home = () => {
 
           <div className="flex flex-col gap-4 mt-6 ml-10">
             <div className="flex gap-4">
-              <img src={IMG42} className="w-72.5 h-87" />
-              <img src={IMG44} className="h-108.25" />
+              <img src={IMG42} className="w-72.5 h-87 object-contain" />
+              <img src={IMG44} className="h-108.25 object-contain" />
             </div>
             <div className="flex gap-4">
-              <img src={IMG41} className="h-60.5" />
-              <img src={IMG43} className="h-49" />
+              <img src={IMG41} className="h-60.5 object-contain" />
+              <img src={IMG43} className="h-49 object-contain" />
             </div>
           </div>
 

@@ -13,6 +13,7 @@ import { useState } from "react";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import Contact from "./components/Contact";
+import Blog from "./components/Blog";
 
 const App = () => {
 
@@ -33,7 +34,7 @@ const App = () => {
             }
           />
 
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signup" element={<LoginRoute><SignUp /></LoginRoute>} />
 
           <Route element={<Layout cartArr={cartArr} setCartArr={setCartArr} />}>
             <Route
@@ -85,6 +86,15 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <Contact />
+                </ProtectedRoute>
+              }
+            />
+
+              <Route
+              path="/blog"
+              element={
+                <ProtectedRoute>
+                  <Blog />
                 </ProtectedRoute>
               }
             />

@@ -1,6 +1,7 @@
 import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 import LOGO from "../assets/Navbar/logo.png";
-import { AwardIcon, BlackDot, Hollowcon, Shipping, Support, Warranty, Xicon } from "../assets/Icons";
+import { BlackDot, Hollowcon, Xicon } from "../assets/Icons";
+import Award from "./Award";
 
 const Checkout = () => {
     return (
@@ -28,17 +29,17 @@ const Checkout = () => {
                 </div>
             </div>
 
-            <div className="mt-15.75 flex px-25 gap-6.5">
+            <div className="mt-15.75 flex flex-col lg:flex-row  px-2 lg:px-25 gap-6.5">
                 <div className="flex flex-col gap-9">
 
                     <h1 className="font-poppins font-semibold text-[36px]">Billing details</h1>
 
-                    <div className="flex  gap-7.75 items-center">
-                        <div className="flex flex-col gap-5.5">
+                    <div className="flex flex-col lg:flex-row  gap-7.75 items-center">
+                        <div className="flex flex-col gap-5.5 w-full">
                             <label className="font-poppins font-medium">First Name</label>
                             <input type="text" name="" id="" className="border border-footer rounded-[10px] h-18.75" />
                         </div>
-                        <div className="flex flex-col gap-5.5">
+                        <div className="flex flex-col gap-5.5 w-full">
 
                             <label className="font-poppins font-medium">Last Name</label>
                             <input type="text" name="" id="" className="border border-footer rounded-[10px] h-18.75" />
@@ -156,57 +157,7 @@ const Checkout = () => {
                 </div>
             </div>
 
-            <div className="bg-[#FAF3EA] py-25 px-13.25 flex justify-between items-center gap-3 mt-21.25 ">
-                <div className="flex items-center gap-2.5">
-                    <div>{AwardIcon}</div>
-                    <div>
-                        <h1 className="text-[#242424] text-[25px] font-poppins font-semibold">
-                            High Quality
-                        </h1>
-                        <p className="text-[#898989] text-[20px] font-medium font-poppins">
-                            crafted from top materials
-                        </p>
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                    <div>{Warranty}</div>
-                    <div>
-                        <h1 className="text-[#242424] text-[25px] font-poppins font-semibold">
-                            Warranty Protection
-                        </h1>
-                        <p className="text-[#898989] text-[20px] font-medium font-poppins">
-                            Over 2 years
-                        </p>
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                    <div>{Shipping}</div>
-
-                    <div>
-                        <h1 className="text-[#242424] text-[25px] font-poppins font-semibold">
-                            Free Shipping
-                        </h1>
-                        <p className="text-[#898989] text-[20px] font-medium font-poppins">
-                            Order over 150 $
-                        </p>
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                    <div>{Support}</div>
-
-                    <div>
-                        <h1 className="text-[#242424] text-[25px] font-poppins font-semibold">
-                            24 / 7 Support
-                        </h1>
-                        <p className="text-[#898989] text-[20px] font-medium font-poppins">
-                            Dedicated support
-                        </p>
-                    </div>
-                </div>
-            </div>
+          <Award/>
         </div>
     )
 }

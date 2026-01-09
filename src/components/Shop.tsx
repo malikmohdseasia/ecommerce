@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
 import {
-  AwardIcon,
   CompereIcon,
   Filter,
   FourDot,
   LikeIcon,
   ShareIcon,
-  Shipping,
-  Support,
-  Warranty,
 } from "../assets/Icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
+import Award from "./Award";
 
 const Shop = () => {
   const [products, setProducts] = useState<any>([]);
@@ -61,18 +58,18 @@ const Shop = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#F9F1E7] flex justify-between items-center py-8.75 px-25">
-        <div className="flex items-center gap-6">
+      <div className="bg-[#F9F1E7] flex flex-col lg:flex-row justify-between items-center py-2 lg:py-8.75 px-2 lg:px-25">
+        <div className="flex flex-row  items-center gap-6">
           {Filter}
           <h1 className="font-poppins text-[20px]">Filter</h1>
           {FourDot}
-          <p className="border-l-2 border-footer px-8.5 font-poppins">
+          <p className="border-l-2 border-footer pl-8.5 font-poppins">
             Showing 1–16 of 32 results
           </p>
         </div>
 
-        <div className="flex items-cente gap-7.25">
-          <div className="flex items-center gap-4.25">
+        <div className="flex flex-col lg:flex-row items-center gap-7.25 ">
+          <div className="flex items-center gap-4.25 mt-10 lg:mt-0">
             <h1 className="font-poppins text-[20px]">Show</h1>
             <p className="font-poppins text-[20px] text-footer bg-white py-3 px-4.5">
               {currentProducts.length}
@@ -94,7 +91,7 @@ const Shop = () => {
           "
             onClick={() => navigate(`/shop/${item.id}`)}
           >
-            <div className="relative">
+            <div className="relative text-center lg:text-start" >
               <img src={item.image} alt="product" className="w-60 h-60 p-5" />
 
               <div className="py-4 px-5">
@@ -102,9 +99,9 @@ const Shop = () => {
                   {item.title}
                 </h1>
 
-                <div className="mt-2 flex gap-4 items-center">
-                  <p className="font-poppins text-[#3A3A3A] font-semibold">
-                    ${Math.round(item.price)}
+                <div className="mt-2 flex gap-4 items-center justify-center lg:justify-start">
+                  <p className="font-poppins text-[#3A3A3A] font-semibold ">
+                    Rs {Math.round(item.price*83)}
                   </p>
                 </div>
               </div>
@@ -141,7 +138,7 @@ const Shop = () => {
         ))}
       </div>
 
-      <div className=" flex items-center gap-9.5 justify-center mt-17.5">
+      <div className=" flex flex-wrap items-center gap-1 lg:gap-9.5 justify-center mt-17.5">
         {[...Array(totalPages)].map((_, index) => (
           <button
             key={index}
@@ -167,57 +164,7 @@ const Shop = () => {
         </button>
       </div>
 
-      <div className="bg-[#FAF3EA] py-25 px-13.25 flex justify-between items-center gap-3 mt-21.25 ">
-        <div className="flex items-center gap-2.5">
-          <div>{AwardIcon}</div>
-          <div>
-            <h1 className="text-[#242424] text-[25px] font-poppins font-semibold">
-              High Quality
-            </h1>
-            <p className="text-[#898989] text-[20px] font-medium font-poppins">
-              crafted from top materials
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2.5">
-          <div>{Warranty}</div>
-          <div>
-            <h1 className="text-[#242424] text-[25px] font-poppins font-semibold">
-              Warranty Protection
-            </h1>
-            <p className="text-[#898989] text-[20px] font-medium font-poppins">
-              Over 2 years
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2.5">
-          <div>{Shipping}</div>
-
-          <div>
-            <h1 className="text-[#242424] text-[25px] font-poppins font-semibold">
-              Free Shipping
-            </h1>
-            <p className="text-[#898989] text-[20px] font-medium font-poppins">
-              Order over 150 $
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2.5">
-          <div>{Support}</div>
-
-          <div>
-            <h1 className="text-[#242424] text-[25px] font-poppins font-semibold">
-              24 / 7 Support
-            </h1>
-            <p className="text-[#898989] text-[20px] font-medium font-poppins">
-              Dedicated support
-            </p>
-          </div>
-        </div>
-      </div>
+      <Award/>
     </div>
   );
 };
