@@ -268,11 +268,10 @@ const Home = () => {
             {sliderImages.map((_, index) => (
               <span
                 key={index}
-                className={`w-3 h-3 rounded-full ${
-                  currentSlide === index
+                className={`w-3 h-3 rounded-full ${currentSlide === index
                     ? "bg-[#B88E2F] border-[#B88E2F]"
                     : "bg-gray-300"
-                }`}
+                  }`}
               />
             ))}
           </div>
@@ -297,9 +296,9 @@ const Home = () => {
         <h1 className="font-Montserrat text-[40px] font-bold text-center">
           #FuniroFurniture
         </h1>
+        <div className="mt-10 flex justify-center overflow-hidden">
 
-        <div className="mt-10 flex justify-center gap-4 overflow-hidden">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 mt-12 mr-10">
             <div className="flex gap-4">
               <img src={IMG36} className="h-95.5" />
               <img src={IMG38} className="h-78 w-112.75" />
@@ -311,10 +310,10 @@ const Home = () => {
           </div>
 
           <div className="flex items-center">
-            <img src={IMG40} className="h-98 w-73.75" />
+            <img src={IMG40} className="h-98 w-50 ml-10 object-contain" />
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 mt-6 ml-10">
             <div className="flex gap-4">
               <img src={IMG42} className="w-72.5 h-87" />
               <img src={IMG44} className="h-108.25" />
@@ -324,7 +323,10 @@ const Home = () => {
               <img src={IMG43} className="h-49" />
             </div>
           </div>
+
         </div>
+
+
       </div>
     </div>
   );

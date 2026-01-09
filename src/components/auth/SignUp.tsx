@@ -23,6 +23,7 @@ const SignUp = () => {
   });
 
   const handleEmailChange = (value:any) => {
+  
     setEmail(value);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

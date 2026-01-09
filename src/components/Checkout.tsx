@@ -20,7 +20,7 @@ const Checkout = () => {
                         </Breadcrumb>
 
                         <Breadcrumb aria-label="Default breadcrumb example" >
-                            <BreadcrumbItem href="/shop"  >
+                            <BreadcrumbItem href="/checkout"  >
                                 <p className="font-poppins font-light text-[16px]">Checkout</p>
                             </BreadcrumbItem>
                         </Breadcrumb>

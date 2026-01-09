@@ -12,6 +12,7 @@ import SingleProduct from "./components/SingleProduct";
 import { useState } from "react";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
+import Contact from "./components/Contact";
 
 const App = () => {
 
@@ -78,6 +79,16 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+
+              <Route
+              path="/contact"
+              element={
+                <ProtectedRoute>
+                  <Contact />
+                </ProtectedRoute>
+              }
+            />
+
 
             <Route path="*" element={<NotFound />} />
           </Route>

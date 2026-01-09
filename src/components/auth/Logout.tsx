@@ -4,6 +4,7 @@ const Logout = ({ isOpen, onClose }:any) => {
   const navigate = useNavigate();
 
   if (!isOpen) return null;
+  debugger
 
   const handleLogout = () => {
     localStorage.removeItem("user"); 
