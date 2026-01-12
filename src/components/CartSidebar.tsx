@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { CrossCart, crossIcon, Xicon } from "../assets/Icons";
 
-const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr }: any) => {
+const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr, setIsOpen }: any) => {
 
     const navigate = useNavigate();
 
@@ -22,7 +22,12 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr }: any) => {
 
     return (
         <>
-            {cartShow && <div className="fixed z-50 top-0 right-0 bg-white px-5 py-7 ">
+
+        {
+            cartShow && <div className="fixed inset-0 bg-black/50 z-40"></div>
+        }
+
+            {cartShow && <div className="fixed z-50 top-0 right-0 bg-white px-5 py-7 h-[90vh] overflow-y-scroll scrollbar-hide ">
                 <div className="flex justify-between items-center gap-10 lg:gap-0">
                     <h1 className="font-poppins font-semibold text-[24px]">Shopping Cart</h1>
                     <button className="cursor-pointer"
@@ -39,8 +44,8 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr }: any) => {
                         </p>
                     )}
 
-                    {cartArr.map((item: any) => (
-                        <div key={item.id} className="flex items-center">
+                    {cartArr && cartArr?.map((item: any) => (
+                        <div key={item.id} className="flex flex-col lg:flex-row items-center">
                             <div>
                                 <img
                                     src={item.image}
@@ -49,10 +54,10 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr }: any) => {
                                 />
                             </div>
 
-                            <div className="ml-8 mr-15 w-35.5">
-                                <h1 className="font-poppins">{item.title}</h1>
+                            <div className="lg:ml-8 lg:mr-15 lg:w-45 text-center lg:text-start">
+                                <h1 className="font-poppins w-full">{item.title}</h1>
 
-                                <div className="flex items-center gap-3.75">
+                                <div className="flex items-center gap-3.75 justify-center lg:justify-start">
                                     <p className="font-poppins font-light">{item.quantity}</p>
                                     {Xicon}
                                     <p className="font-medium text-[12px] text-[#B88E2F]">
@@ -74,8 +79,8 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr }: any) => {
 
                 <div className="mt-30.25">
                     <div className="flex flex-col lg:flex-row gap-5 lg:gap-25.25">
-                        <h1 className="font-poppins ">Subtotal</h1>
-                        <p className="font-poppins text-[#B88E2F] font-semibold">
+                        <h1 className="font-poppins text-center lg:text-start">Subtotal</h1>
+                        <p className="font-poppins text-[#B88E2F] font-semibold text-center lg:text-start">
                             Rs. {subtotal}
                         </p>
 
@@ -88,10 +93,15 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr }: any) => {
                             onClick={() => {
                                 navigate('/cart')
                                 setCartShow(false)
+                                setIsOpen(false)
                             }}
                         >cart</button>
                         <button className="py-1.5 px-7.5 border rounded-full font-poppins text-[12px] cursor-pointer"
-                        onClick={()=>navigate("/checkout")}
+                        onClick={()=>{navigate("/checkout")
+                              setCartShow(false);
+                              setIsOpen(false)
+                        }}
+                        
                         >Checkout</button>
                         <button className="py-1.5 px-7.5 border rounded-full font-poppins text-[12px] cursor-pointer">Comparison</button>
                     </div>

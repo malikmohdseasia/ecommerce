@@ -67,7 +67,7 @@ const Login = () => {
 
   return (
     <div className="h-screen flex bg-white overflow-hidden">
-      <div className="w-full md:w-1/2 flex items-center justify-center px-6">
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 text-center lg:text-start">
         <form onSubmit={handleSubmit} className="w-full max-w-md">
           <h2 className="text-2xl font-bold mb-2 font-poppins">
             Welcome Back
@@ -85,7 +85,7 @@ const Login = () => {
               value={email}
               onChange={(e) => handleEmailChange(e.target.value)}
               placeholder="example@email.com"
-              className={`w-full border rounded-lg px-3 py-2 outline-none focus:ring-2 font-poppins
+              className={`w-full border rounded-lg text-center  lg:text-start px-3 py-2 outline-none focus:ring-2 font-poppins
                 ${
                   errors.email
                     ? "border-red-500 focus:ring-red-200"
@@ -110,7 +110,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => handlePasswordChange(e.target.value)}
                 placeholder="••••••••"
-                className={`w-full border rounded-lg px-3 py-2 pr-10 outline-none focus:ring-2 font-poppins
+                className={`w-full border rounded-lg text-center  lg:text-start px-3 py-2 pr-10 outline-none focus:ring-2 font-poppins
                   ${
                     errors.password
                       ? "border-red-500 focus:ring-red-200"
@@ -150,7 +150,7 @@ const Login = () => {
         </form>
       </div>
 
-      <div className="hidden md:flex items-center justify-end bg-gray-50 w-1/2">
+      <div className="hidden lg:flex items-center justify-end bg-gray-50 w-1/2">
         <img src={LoginImg} alt="Login" className="w-3/4 object-contain" />
       </div>
     </div>

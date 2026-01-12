@@ -17,7 +17,10 @@ import Blog from "./components/Blog";
 
 const App = () => {
 
+   const [isOpen, setIsOpen] = useState(false);
   const [cartArr, setCartArr] = useState<any>([]);
+  const [searchShow, setSearchShow] = useState(false);
+
 
   return (
     <>
@@ -26,7 +29,7 @@ const App = () => {
 
         <Routes>
           <Route
-            path="/login"
+            path="/"
             element={
               <LoginRoute>
                 <Login />
@@ -36,7 +39,9 @@ const App = () => {
 
           <Route path="/signup" element={<LoginRoute><SignUp /></LoginRoute>} />
 
-          <Route element={<Layout cartArr={cartArr} setCartArr={setCartArr} />}>
+          <Route element={<Layout isOpen={isOpen} setIsOpen={setIsOpen} cartArr={cartArr} setCartArr={setCartArr} 
+          searchShow={searchShow} setSearchShow={setSearchShow}
+          />}>
             <Route
               path="/home"
               element={
@@ -100,8 +105,8 @@ const App = () => {
             />
 
 
-            <Route path="*" element={<NotFound />} />
           </Route>
+            <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>

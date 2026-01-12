@@ -31,7 +31,7 @@ const Blog = () => {
                 <div className="relative z-20 flex flex-col items-center justify-center ">
                     <img src={LOGO} alt="" className="object-contain" />
 
-                    <h1 className="text-[#000000] text-[48px] font-medium">Blog</h1>
+                    <h1 className="text-[#000000] text-[35px] lg:text-[48px] font-medium">Blog</h1>
                     <div className="flex items-center">
 
                         <Breadcrumb aria-label="Default breadcrumb example">
@@ -49,7 +49,7 @@ const Blog = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row mt-26.5 gap-7.5 ">
+            <div className="flex flex-col lg:flex-row mt-8 lg:mt-26.5 gap-7.5 ">
                 <div className="w-full lg:w-[70%] p-2 lg:pl-25 ">
 
                     <div >
@@ -72,7 +72,7 @@ const Blog = () => {
                         </div>
 
                         <div className="mt-3.75">
-                            <h1 className="font-poppins text-[30px] font-medium text-center lg:text-start">Going all-in with millennial design</h1>
+                            <h1 className="font-poppins  text-[20px] lg:text-[30px] font-medium text-center lg:text-start">Going all-in with millennial design</h1>
                             <p className="font-poppins text-[15px] text-footer mt-3 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.</p>
                         </div>
 
@@ -102,7 +102,7 @@ const Blog = () => {
                         </div>
 
                         <div className="mt-3.75">
-                            <h1 className="font-poppins text-[30px] font-medium text-center lg:text-start">Exploring new ways of decorating</h1>
+                            <h1 className="font-poppins  text-[20px] lg:text-[30px] font-medium text-center lg:text-start">Exploring new ways of decorating</h1>
                             <p className="font-poppins text-[15px] text-footer mt-3 text-center lg:text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.</p>
                         </div>
 
@@ -132,7 +132,7 @@ const Blog = () => {
                         </div>
 
                         <div className="mt-3.75">
-                            <h1 className="font-poppins text-[30px] font-medium text-center lg:text-start">Handmade pieces that took time to make</h1>
+                            <h1 className="font-poppins  text-[20px] lg:text-[30px] font-medium text-center lg:text-start">Handmade pieces that took time to make</h1>
                             <p className="font-poppins text-[15px] text-footer mt-3 text-center lg:text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.</p>
                         </div>
 
@@ -150,7 +150,7 @@ const Blog = () => {
 
 
                 <div className="py-5.5 px-5.25 w-full lg:w-[25%]">
-                    <div className="h-14.5 border border-footer w-full rounded-lg flex items-center px-2">
+                    <div className="h-10 border border-footer w-full rounded-lg flex items-center px-2">
                         <input type="text" name="" id="" className="w-full h-full outline-none px-2" />
                         <button className="cursor-pointer"> {SearchIco}</button>
                     </div>
@@ -171,16 +171,16 @@ const Blog = () => {
 
                     <div className="mt-10.25">
 
-                        <h1 className="font-poppins font-medium text-[24px] text-center lg:text-start">Recent Posts</h1>
+                        <h1 className="font-poppins font-medium text-[20px] lg:text-[24px] text-center lg:text-start">Recent Posts</h1>
 
-                        <div className="mt-6.5 flex flex-col gap-9.75">
+                        <div className="mt-6.5 flex flex-col items-center gap-9.75">
                             {
                                 items2?.map((item, index) => (
-                                    <div key={index} className="flex gap-3 items-center">
+                                    <div key={index} className="flex flex-col lg:flex-row gap-3 items-center">
                                         <div><img src={item.img} alt="" /></div>
                                         <div>
                                             <h1 className="font-poppins text-[14px] w-full lg:w-[70%] ">{item.title}</h1>
-                                            <h2 className="font-poppins text-[12px] text-footer">{item.desc}</h2>
+                                            <h2 className="font-poppins text-[12px] text-footer text-center lg:text-star'">{item.desc}</h2>
                                         </div>
                                     </div>
                                 ))

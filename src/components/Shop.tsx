@@ -6,19 +6,22 @@ import {
   LikeIcon,
   ShareIcon,
 } from "../assets/Icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 import Award from "./Award";
 
 const Shop = () => {
+  const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState<any>(1);
   const itemsPerPage = 4;
 
   const getData = async () => {
+    setLoading(true);
     let data = await fetch("https://fakestoreapi.com/products");
     data = await data.json();
     setProducts(data);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -32,27 +35,26 @@ const Shop = () => {
   const totalPages = Math.ceil(products.length / itemsPerPage);
   const isLastPage = currentPage === totalPages;
   const navigate = useNavigate();
+  
 
-  const location = useLocation();
-  const path = location.pathname.slice(1)
 
   return (
     <div>
       <div className="bg-[url(./assets/shopImg.jpg)] h-79 bg-cover bg-center w-full relative flex items-center justify-center">
-        <div className="absolute inset-0 bg-black/5 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-black/5 backdrop-blur-sm  "></div>
 
         <div className="relative z-20 flex flex-col items-center justify-center ">
-          <h1 className="text-[#000000] text-[48px] font-medium">Shop</h1>
+          <h1 className="text-[#000000] text-[35px] lg:text-[48px] font-medium">Shop</h1>
           <div className="flex items-center">
-            
-            <Breadcrumb  aria-label="Default breadcrumb example">
-              <BreadcrumbItem href="/home" >
+
+            <Breadcrumb aria-label="Default breadcrumb example">
+              <BreadcrumbItem href="/home">
                 <p className="font-poppins font-medium">Home</p>
               </BreadcrumbItem>
-      
 
-              <BreadcrumbItem href="/shop"  >
-            <p className="font-poppins font-light text-[16px]">{path}</p>
+
+              <BreadcrumbItem href="/shop">
+                <p className="font-poppins font-light text-[16px]">Shop</p>
               </BreadcrumbItem>
             </Breadcrumb>
           </div>
@@ -86,10 +88,10 @@ const Shop = () => {
       </div>
 
       <div className="mt-15.75 flex flex-wrap justify-center gap-8">
-        {currentProducts && currentProducts?.map((item: any, index: any) => (
+        {
+          loading ? <h1>Loading...</h1>: (currentProducts && currentProducts?.map((item: any, index: any) => (
           <div key={index} className="bg-[#F4F5F7] relative group w-60 h-90 
           "
-            onClick={() => navigate(`/shop/${item.id}`)}
           >
             <div className="relative text-center lg:text-start" >
               <img src={item.image} alt="product" className="w-60 h-60 p-5" />
@@ -101,18 +103,23 @@ const Shop = () => {
 
                 <div className="mt-2 flex gap-4 items-center justify-center lg:justify-start">
                   <p className="font-poppins text-[#3A3A3A] font-semibold ">
-                    Rs {Math.round(item.price*83)}
+                    Rs {Math.round(item.price * 83)}
                   </p>
                 </div>
               </div>
 
-              <div
+             
+            </div>
+             <div
                 className="absolute z-30 inset-0 bg-[#3A3A3A] opacity-0 group-hover:opacity-80 transition-opacity duration-300
-              flex items-center justify-center
+              flex items-center justify-center w-[110%] h-full
               "
+                // onClick={() => navigate(`/shop/${item.id}`)}
               >
                 <div className="flex flex-col gap-6 items-center ">
-                  <button className="text-[#B88E2F] cursor-pointer font-poppins font-semibold py-3 px-13 bg-white  ">
+                  <button className="text-[#B88E2F] cursor-pointer font-poppins font-semibold py-3 px-13 bg-white hover:text-blue-400"
+                   onClick={() => navigate(`/shop/${item.id}`)}
+                  >
                     Add to cart
                   </button>
                   <div className="flex gap-5">
@@ -133,9 +140,9 @@ const Shop = () => {
                   </div>
                 </div>
               </div>
-            </div>
           </div>
-        ))}
+        )))
+        }
       </div>
 
       <div className=" flex flex-wrap items-center gap-1 lg:gap-9.5 justify-center mt-17.5">
@@ -144,8 +151,8 @@ const Shop = () => {
             key={index}
             onClick={() => setCurrentPage(index + 1)}
             className={`cursor-pointer font-poppins text-[20px] w-15 h-15 rounded-[10px]   ${currentPage === index + 1
-                ? "bg-[#B88E2F] text-white"
-                : "bg-[#F9F1E7]"
+              ? "bg-[#B88E2F] text-white"
+              : "bg-[#F9F1E7]"
               }`}
           >
             {index + 1}
@@ -164,7 +171,7 @@ const Shop = () => {
         </button>
       </div>
 
-      <Award/>
+      <Award />
     </div>
   );
 };

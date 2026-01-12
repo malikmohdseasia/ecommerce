@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
-  const items1 = [{ title: "Home", route: "/home" }, { title: "Shop", route: "/shop" }, { title: "About", route: "/about" }, { title: "Contact", route: "/contact" }];
+  const items1 = [{ title: "Home", route: "/home" }, { title: "Shop", route: "/shop" }, { title: "Contact", route: "/contact" }];
   const items2 = ["Payment Options", "Returns", "Privacy Policies"];
 
   return (
@@ -44,7 +44,7 @@ const Footer = () => {
 
         <div className=" relative">
           <p className="font-poppins font-medium text-footer mt-5 lg:mt-0">Newsletter</p>
-          <div className="mt-13.25 flex flex-col-reverse lg:flex-row gap-2 ">
+          <div className="mt-13.25 flex flex-col-reverse xl:flex-row gap-2 ">
             <input type="text" name="" id="" placeholder="Enter Your Email Address" className="outline-none border-b
              w-50 text-[14px] text-center lg:text-start
              " />

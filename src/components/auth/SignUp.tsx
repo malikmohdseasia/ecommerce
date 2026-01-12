@@ -22,8 +22,46 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
-  const handleEmailChange = (value:any) => {
-  
+  const validateOnSubmit = () => {
+    let isValid = true;
+
+    if (!name) {
+      setErrors((prev) => ({ ...prev, name: "Name is required" }));
+      isValid = false;
+    }
+
+    if (!email) {
+      setErrors((prev) => ({ ...prev, email: "Email is required" }));
+      isValid = false;
+    }
+
+    if (!password) {
+      setErrors((prev) => ({ ...prev, password: "Password is required" }));
+      isValid = false;
+    }
+
+    if (!confirmPassword) {
+      setErrors((prev) => ({
+        ...prev,
+        confirmPassword: "Confirm password is required",
+      }));
+      isValid = false;
+    }
+
+    if (password && confirmPassword && password !== confirmPassword) {
+      setErrors((prev) => ({
+        ...prev,
+        confirmPassword: "Passwords do not match",
+      }));
+      isValid = false;
+    }
+
+    return isValid;
+  };
+
+
+  const handleEmailChange = (value: any) => {
+
     setEmail(value);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -36,7 +74,7 @@ const SignUp = () => {
     }
   };
 
-  const handlePasswordChange = (value:any) => {
+  const handlePasswordChange = (value: any) => {
     setPassword(value);
 
     const strongPwdRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
@@ -53,7 +91,7 @@ const SignUp = () => {
     }
   };
 
-  const handleConfirmPasswordChange = (value:any) => {
+  const handleConfirmPasswordChange = (value: any) => {
     setConfirmPassword(value);
 
     if (!value) {
@@ -71,14 +109,16 @@ const SignUp = () => {
     }
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
+    const isValid = validateOnSubmit();
+
+    if (!isValid) {
+      return;
+    }
+
     if (
-      name &&
-      email &&
-      password &&
-      confirmPassword &&
       !errors.email &&
       !errors.password &&
       !errors.confirmPassword
@@ -89,12 +129,12 @@ const SignUp = () => {
       );
 
       toast.success("Account Created Successfully!");
-      navigate("/login");
+      navigate("/home");
     }
   };
 
   return (
-    <div className="h-screen flex bg-white overflow-hidden">
+    <div className="h-screen flex bg-white overflow-hidden text-center lg:text-start">
       <div className="w-full md:w-1/2 flex items-center justify-center px-6">
         <form onSubmit={handleSubmit} className="w-full max-w-md">
           <h2 className="text-2xl font-bold mb-2 font-poppins">
@@ -112,9 +152,15 @@ const SignUp = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-black font-poppins"
+              className="w-full border text-center lg:text-start border-gray-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-black font-poppins"
               placeholder="Your name"
             />
+           
+           {errors.name && (
+              <p className="text-red-500 text-xs mt-1 font-poppins">
+                {errors.name}
+              </p>
+            )}
           </div>
 
           <div className="mb-4">
@@ -125,11 +171,10 @@ const SignUp = () => {
               type="email"
               value={email}
               onChange={(e) => handleEmailChange(e.target.value)}
-              className={`w-full border rounded-lg px-3 py-2 outline-none focus:ring-2 font-poppins ${
-                errors.email
+              className={`w-full  text-center lg:text-start border rounded-lg px-3 py-2 outline-none focus:ring-2 font-poppins ${errors.email
                   ? "border-red-500 focus:ring-red-200"
                   : "border-gray-300 focus:ring-black"
-              }`}
+                }`}
               placeholder="example@email.com"
             />
             {errors.email && (
@@ -148,11 +193,10 @@ const SignUp = () => {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => handlePasswordChange(e.target.value)}
-                className={`w-full border rounded-lg px-3 py-2 pr-10 outline-none focus:ring-2 font-poppins ${
-                  errors.password
+                className={`w-full  text-center lg:text-start border rounded-lg px-3 py-2 pr-10 outline-none focus:ring-2 font-poppins ${errors.password
                     ? "border-red-500 focus:ring-red-200"
                     : "border-gray-300 focus:ring-black"
-                }`}
+                  }`}
                 placeholder="••••••••"
               />
               <span
@@ -180,11 +224,10 @@ const SignUp = () => {
                 onChange={(e) =>
                   handleConfirmPasswordChange(e.target.value)
                 }
-                className={`w-full border rounded-lg px-3 py-2 pr-10 outline-none focus:ring-2 font-poppins ${
-                  errors.confirmPassword
+                className={`w-full  text-center lg:text-start border rounded-lg px-3 py-2 pr-10 outline-none focus:ring-2 font-poppins ${errors.confirmPassword
                     ? "border-red-500 focus:ring-red-200"
                     : "border-gray-300 focus:ring-black"
-                }`}
+                  }`}
                 placeholder="••••••••"
               />
               <span
@@ -212,7 +255,7 @@ const SignUp = () => {
 
           <p className="text-sm text-center mt-4 font-poppins">
             Already have an account?
-            <Link to="/login" className="font-semibold underline">
+            <Link to="/" className="font-semibold underline">
               Login
             </Link>
           </p>

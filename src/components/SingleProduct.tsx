@@ -165,7 +165,7 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
     <>
       {loading ? (<h1>loading....</h1>) :
         <div className="">
-          <div className="bg-[#F9F1E7] px-2 lg:pl-25 py-9.5 flex items-center gal-2 lg:gap-6">
+          <div className="bg-[#F9F1E7] px-2 lg:pl-25 py-9.5 flex items-center gap-2 lg:gap-6">
             <div className="flex items-center gap-3.5">
               <Breadcrumb aria-label="Default breadcrumb example" >
                 <BreadcrumbItem href="/home"  >
@@ -187,8 +187,8 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
             </div>
           </div>
 
-          <div className="py-8.75 lg:px-25 flex flex-col lg:flex-row gap-20.5">
-            <div className="flex w-full lg:w-1/2 gap-2">
+          <div className="py-8.75 px-2 lg:px-25 flex flex-col lg:flex-row gap-20.5">
+            <div className="flex w-full md:justify-center lg:w-1/2 gap-2 md:px-5 lg:px-0">
               <div className="flex flex-col gap-8">
                 {items.map((item, index) => (
                   <div key={index}>
@@ -198,13 +198,13 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
               </div>
 
               <div>
-                <img src={product?.image} alt="" className="object-contain " />
+                <img src={product?.image} alt="" className="object-contain" />
               </div>
             </div>
 
             <div className="w-full px-2 lg:px-0 lg:w-1/2 text-center lg:text-start">
               <h1 className="font-poppins text-[18px] lg:text-[42px]">{product?.title}</h1>
-              <p className="font-poppins text-[24px] text-footer">Rs. {Math.round(product?.price*83)}</p>
+              <p className="font-poppins text-lg lg:text-[24px] text-footer">Rs. {Math.round(product?.price*83)}</p>
               <div className="flex justify-center items-center gap-4.5 mt-3.75">
                 {RatingIcon}
                 <p className="border-l border-footer pl-5.5 text-footer text-[13px]">
@@ -274,14 +274,20 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
               <div className="mt-10.25 flex flex-col gap-3 ">
                 {items2.map((item, index) => (
                   <div className="flex justify-center lg:justify-start gap-4 " key={index}>
-                    <div className=" w-20">
+                    <div className="w-15 lg:w-20">
                       <p className="font-poppins text-footer">{item.title}</p>
                     </div>
 
                     <div className="text-footer">:</div>
-                    <div className="">
-                      <p className="font-poppins text-footer">{item.desc}</p>
-                      <div className="flex items-center gap-6.25">
+                    <div className="flex flex-col lg:flex-row gap-2">
+                     {item.desc?.split(',').map((itemDESC, index)=>(
+                      <div key={index} >
+
+                      <p className="font-poppins text-footer">{itemDESC},
+                     </p>
+                      </div>
+                     ))}
+                      <div className="flex flex-col lg:flex-row items-center gap-1 lg:gap-6.25">
                         {item.title === "Share" &&
                           svgItems.map((item, index) => (
                             <div key={index}>{item}</div>

@@ -29,7 +29,7 @@ const Cart = ({ cartArr, setCartArr }: any) => {
                     <div className="relative z-20 flex flex-col items-center justify-center ">
                         <img src={Logo} alt="" className="object-contain" />
                         
-                      <h1 className="text-[#000000] text-[48px] font-medium">Cart</h1>
+                      <h1 className="text-[#000000] text-[35px] lg:text-[48px] font-medium">Cart</h1>
                       <div className="flex items-center">
                         
                         <Breadcrumb aria-label="Default breadcrumb example">
@@ -65,12 +65,12 @@ const Cart = ({ cartArr, setCartArr }: any) => {
 
                             <div
                                 key={item.id}
-                                className="flex flex-col lg:flex-row gap-22 items-center mt-13.75 "
+                                className="flex flex-col lg:flex-row gap-5 xl:gap-22 items-center mt-13.75 "
                                 >
-                              <div className="flex flex-col lg:flex-row items-center gap-9.5">
+                              <div className="flex flex-col lg:flex-row items-center gap-5 xl:gap-9.5 relative">
                                   <img src={item.image} alt="" className="w-full lg:w-27 lg:h-26.25 object-contain" />
 
-                                <h1 className="font-poppins text-footer w-20">
+                                <h1 className="font-poppins text-footer w-full lg:w-20 text-center xl:text-start">
                                     {item.title}
                                 </h1>
                                 <h1 className="font-poppins text-footer">
@@ -79,7 +79,7 @@ const Cart = ({ cartArr, setCartArr }: any) => {
                               </div>
 
 
-                                <div className="flex items-center gap-20 ">
+                                <div className="flex items-center gap-2 xl:gap-20 ">
 
 
                                     <div className="flex items-center justify-center w-8 h-8 border border-footer rounded-[5px]">
@@ -98,7 +98,7 @@ const Cart = ({ cartArr, setCartArr }: any) => {
                                
                             </div>
                             
-                                 <div className="mt-15 ml-10">
+                                 <div className="xl:mt-15 xl:ml-10 -mt-8 -mr-35 xl:mr-0">
                                     <button
                                     onClick={() => removeItem(item.id)}
                                     className="cursor-pointer"
@@ -112,7 +112,7 @@ const Cart = ({ cartArr, setCartArr }: any) => {
                     </div>
 
                     <div className="bg-[#F9F1E7] px-5 lg:px-21.25">
-                        <h1 className="pt-3.75 font-semibold text-[18px] lg:text-[32px] font-poppins">
+                        <h1 className="pt-3.75 font-semibold text-[18px] lg:text-[32px] font-poppins text-center lg:text-start">
                             Cart Totals
                         </h1>
 

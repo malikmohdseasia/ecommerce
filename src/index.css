@@ -67,6 +67,10 @@ button:focus-visible {
   }
 } */
 
+.scrollbar-hide::-webkit-scrollbar{
+  display: none
+}
+
 @import 'tailwindcss';
 
 @theme{

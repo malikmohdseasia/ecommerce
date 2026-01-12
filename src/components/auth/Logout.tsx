@@ -4,12 +4,10 @@ const Logout = ({ isOpen, onClose }:any) => {
   const navigate = useNavigate();
 
   if (!isOpen) return null;
-  debugger
-
   const handleLogout = () => {
     localStorage.removeItem("user"); 
     onClose();
-    navigate("/login"); 
+    navigate("/");
   };
 
   return (
@@ -26,14 +24,14 @@ const Logout = ({ isOpen, onClose }:any) => {
         <div className="flex justify-center gap-4">
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100"
+            className="px-5 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer"
           >
             Cancel
           </button>
 
           <button
             onClick={handleLogout}
-            className="px-5 py-2 rounded-md bg-[#B88E2F] text-white hover:bg-red-600"
+            className="px-5 py-2 rounded-md bg-[#B88E2F] text-white hover:bg-red-600 cursor-pointer"
           >
             Logout
           </button>

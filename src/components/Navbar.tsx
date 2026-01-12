@@ -1,18 +1,19 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../assets/Navbar/logo.png";
 import { CartIcon, HeartIcon, ProfileIcon, SearchIcon } from "../assets/Icons";
 import Logout from "./auth/Logout";
 import { useState } from "react";
 import CartSidebar from "./CartSidebar";
+import Searchbar from "./Searchbar";
 
-const Navbar = ({ cartArr, setCartArr }:any) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Navbar = ({ cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchShow }:any) => {
   const [openLogout, setOpenLogout] = useState(false);
   const [showEmail, setShowEmail] = useState<Boolean>(false);
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   let email = user?.email;
   let dataName = email.split('@')[0];
   const [cartShow, setCartShow] = useState<any>(false);
+  const navigate = useNavigate();
 
   const items = [
     { title: "Home", route: "/home" },
@@ -41,23 +42,25 @@ const Navbar = ({ cartArr, setCartArr }:any) => {
   <div className="w-container mx-auto flex flex-col lg:flex-row mt-0 lg:mt-0 lg:items-center items-start lg:justify-between py-5">
     
     <button
-      onClick={() => setIsOpen((pre) => !pre)}
+      onClick={() => setIsOpen((pre:any) => !pre)}
       className="flex lg:hidden mb-4"
     >
       ≣
     </button>
 
-    <div className="items-center gap-1  lg:flex mx-auto lg:mx-0 -mt-12 lg:mt-0">
-      <img src={Logo} alt="logo" className="cursor-pointer mx-auto lg:mx-0  w-10 lg:w-full " />
-      <h1 className="font-bold font-Montserrat text-[20px] lg:text-[34px] cursor-pointer ">
+    <div className="items-center gap-1 lg:flex mx-auto lg:mx-0 -mt-12 lg:mt-0" 
+    onClick={()=>navigate('/home')}
+    >
+      <img src={Logo} alt="logo" className="cursor-pointer mx-auto lg:mx-0 w-10  lg:w-full " />
+      <h1 className="font-bold font-Montserrat text-[20px] lg:text-[22px] cursor-pointer ">
         Furniro
       </h1>
     </div>
 
     <div
       className={`
-        ${isOpen ? "flex " : "hidden"} flex-col lg:flex lg:flex-row gap-5 -mt-3 lg:mt-0
-        lg:gap-18.75
+        ${isOpen ? "flex " : "hidden"} flex-col lg:flex lg:flex-row gap-5 -mt-3 lg:mt-0 lg:gap-8
+        xl:gap-18.75
       `}
     >
       {items.map((item, index) => (
@@ -66,12 +69,16 @@ const Navbar = ({ cartArr, setCartArr }:any) => {
           to={item.route}
           onClick={() => setIsOpen(false)} 
           className={({ isActive }) =>
-            `font-medium font-poppins ${isActive ? "underline" : ""}`
+            `font-medium font-poppins ${isActive ? " text-[#B88E2F] border-b-3 border-yellow-500" : ""}`
           }
         >
           {item.title}
         </NavLink>
       ))}
+
+    {
+      searchShow &&   <Searchbar searchShow ={searchShow } setSearchShow={setSearchShow}/>
+    }
 
       <Logout isOpen={openLogout} onClose={() => setOpenLogout(false)} />
 
@@ -80,6 +87,8 @@ const Navbar = ({ cartArr, setCartArr }:any) => {
         setCartShow={setCartShow}
         cartArr={cartArr}
         setCartArr={setCartArr}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
       />
     </div>
 
@@ -99,6 +108,7 @@ const Navbar = ({ cartArr, setCartArr }:any) => {
           onClick={() => {
             if (item.title === "profile") setOpenLogout(true);
             if (item.title === "cart") setCartShow(true);
+            if(item.title==='search') setSearchShow((pre:any)=>!pre);
           }}
           onMouseEnter={() =>
             item.title === "profile" && setShowEmail(true)
@@ -111,7 +121,7 @@ const Navbar = ({ cartArr, setCartArr }:any) => {
             <div className="relative">
               {item.svg}
               {showEmail && (
-                <p className="absolute text-center -left-2">{dataName}</p>
+                <p className="absolute text-center -left-2 capitalize text-[#B88E2F]">{dataName}</p>
               )}
             </div>
           ) : (

@@ -144,9 +144,9 @@ const Home = () => {
         </p>
       </div>
 
-      <div className=" mt-5 lg:mt-15.5 flex flex-col lg:flex-row  gap-5 items-center justify-center w-60 lg:w-full mx-auto">
+      <div className=" mt-5 lg:mt-15.5 flex flex-col lg:flex-row  gap-5 justify-center items-center w-80 lg:w-full mx-auto overflow-hidden">
         {items1.map((item, index) => (
-          <div key={index} className="flex flex-col gap-7.5 items-center">
+          <div key={index} className="flex flex-col gap-7.5 items-center ">
             <img src={item.img} alt="" />
             <p className="font-poppins font-semibold text-[18px] lg:text-[24px] text-home">
               {item.title}
@@ -296,10 +296,10 @@ const Home = () => {
         <h1 className="font-Montserrat font-bold text-center text-[20px] lg:text-[40px] ">
           #FuniroFurniture
         </h1>
-        <div className="mt-2 lg:mt-10 flex justify-center overflow-hidden">
+        <div className="mt-2 lg:mt-10 flex flex-col lg:flex-row justify-center overflow-hidden">
 
-          <div className="flex flex-col gap-4 mt-12 mr-10">
-            <div className="flex gap-4">
+          <div className="flex flex-col gap-4 mt-12 lg:mr-10 mx-auto">
+            <div className="flex gap-4 items-end">
               <img src={IMG36} className="h-95.5 object-contain" />
               <img src={IMG38} className="h-78 w-112.75 object-contain" />
             </div>
@@ -310,11 +310,11 @@ const Home = () => {
           </div>
 
           <div className="flex items-center">
-            <img src={IMG40} className="h-98 w-50 ml-10 object-contain" />
+            <img src={IMG40} className="mx-auto mt-5 w-full h-120 lg:h-98 lg:w-50 lg:ml-10 object-contain" />
           </div>
 
-          <div className="flex flex-col gap-4 mt-6 ml-10">
-            <div className="flex gap-4">
+          <div className="flex flex-col gap-4 mt-6 lg:ml-10 mx-auto">
+            <div className="flex gap-4 items-end">
               <img src={IMG42} className="w-72.5 h-87 object-contain" />
               <img src={IMG44} className="h-108.25 object-contain" />
             </div>
