@@ -299,26 +299,26 @@ const Home = () => {
         <div className="mt-2 lg:mt-10 flex flex-col lg:flex-row justify-center overflow-hidden">
 
           <div className="flex flex-col gap-4 mt-12 lg:mr-10 mx-auto">
-            <div className="flex gap-4 items-end">
+            <div className="flex gap-4 items-end px-4 xl:px-0">
               <img src={IMG36} className="h-95.5 object-contain" />
-              <img src={IMG38} className="h-78 w-112.75 object-contain" />
+              <img src={IMG38} className="xl:h-78 xl:w-112.75 lg:w-90 object-contain" />
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 px-3 xl:px-0">
               <img src={IMG37} className="h-80.75 object-contain" />
-              <img src={IMG39} className="h-60.5 w-86" />
+              <img src={IMG39} className="h-60.5 xl:w-86 lg:w-70" />
             </div>
           </div>
 
           <div className="flex items-center">
-            <img src={IMG40} className="mx-auto mt-5 w-full h-120 lg:h-98 lg:w-50 lg:ml-10 object-contain" />
+            <img src={IMG40} className="mx-auto mt-5 w-full h-120 lg:h-98 xl:w-60 lg:w-40 lg:ml-10 xl:ml-2 object-contain" />
           </div>
 
           <div className="flex flex-col gap-4 mt-6 lg:ml-10 mx-auto">
-            <div className="flex gap-4 items-end">
+            <div className="flex gap-4 items-end px-3 xl:px-0">
               <img src={IMG42} className="w-72.5 h-87 object-contain" />
               <img src={IMG44} className="h-108.25 object-contain" />
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 px-3 xl:px-0">
               <img src={IMG41} className="h-60.5 object-contain" />
               <img src={IMG43} className="h-49 object-contain" />
             </div>

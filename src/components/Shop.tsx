@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 import Award from "./Award";
 
+
 const Shop = () => {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<any>([]);
@@ -35,7 +36,12 @@ const Shop = () => {
   const totalPages = Math.ceil(products.length / itemsPerPage);
   const isLastPage = currentPage === totalPages;
   const navigate = useNavigate();
-  
+
+
+const start = (currentPage - 1) * itemsPerPage + 1;
+const end = currentPage * itemsPerPage;
+
+
 
 
   return (
@@ -47,16 +53,22 @@ const Shop = () => {
           <h1 className="text-[#000000] text-[35px] lg:text-[48px] font-medium">Shop</h1>
           <div className="flex items-center">
 
-            <Breadcrumb aria-label="Default breadcrumb example">
-              <BreadcrumbItem href="/home">
-                <p className="font-poppins font-medium">Home</p>
+            <Breadcrumb aria-label="Default breadcrumb example" className="flex items-center
+            group-first:hidden
+            ">
+              <BreadcrumbItem
+                href="/home"
+                className="flex items-center"
+              >
+                <p className="font-poppins font-medium text-lg">Home</p>
               </BreadcrumbItem>
 
-
-              <BreadcrumbItem href="/shop">
+              <BreadcrumbItem href="/shop" className="flex items-center">
                 <p className="font-poppins font-light text-[16px]">Shop</p>
               </BreadcrumbItem>
             </Breadcrumb>
+
+
           </div>
         </div>
       </div>
@@ -66,7 +78,7 @@ const Shop = () => {
           <h1 className="font-poppins text-[20px]">Filter</h1>
           {FourDot}
           <p className="border-l-2 border-footer pl-8.5 font-poppins">
-            Showing 1–16 of 32 results
+              Showing {start}–{end} of {products?.length} results
           </p>
         </div>
 
@@ -89,36 +101,36 @@ const Shop = () => {
 
       <div className="mt-15.75 flex flex-wrap justify-center gap-8">
         {
-          loading ? <h1>Loading...</h1>: (currentProducts && currentProducts?.map((item: any, index: any) => (
-          <div key={index} className="bg-[#F4F5F7] relative group w-60 h-90 
+          loading ? <h1>Loading...</h1> : (currentProducts && currentProducts?.map((item: any, index: any) => (
+            <div key={index} className="bg-[#F4F5F7] relative group w-60 h-90 
           "
-          >
-            <div className="relative text-center lg:text-start" >
-              <img src={item.image} alt="product" className="w-60 h-60 p-5" />
+            >
+              <div className="relative text-center lg:text-start" >
+                <img src={item.image} alt="product" className="w-60 h-60 p-5" />
 
-              <div className="py-4 px-5">
-                <h1 className="font-poppins font-semibold text-[12px] text-[#3A3A3A] mt-4 line-clamp-2  ">
-                  {item.title}
-                </h1>
+                <div className="py-4 px-5">
+                  <h1 className="font-poppins font-semibold text-[12px] text-[#3A3A3A] mt-4 line-clamp-2  ">
+                    {item.title}
+                  </h1>
 
-                <div className="mt-2 flex gap-4 items-center justify-center lg:justify-start">
-                  <p className="font-poppins text-[#3A3A3A] font-semibold ">
-                    Rs {Math.round(item.price * 83)}
-                  </p>
+                  <div className="mt-2 flex gap-4 items-center justify-center lg:justify-start">
+                    <p className="font-poppins text-[#3A3A3A] font-semibold ">
+                      Rs {Math.round(item.price * 83)}
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-             
-            </div>
-             <div
+
+              </div>
+              <div
                 className="absolute z-30 inset-0 bg-[#3A3A3A] opacity-0 group-hover:opacity-80 transition-opacity duration-300
               flex items-center justify-center w-[110%] h-full
               "
-                // onClick={() => navigate(`/shop/${item.id}`)}
+              onClick={() => navigate(`/shop/${item.id}`)}
               >
                 <div className="flex flex-col gap-6 items-center ">
                   <button className="text-[#B88E2F] cursor-pointer font-poppins font-semibold py-3 px-13 bg-white hover:text-blue-400"
-                   onClick={() => navigate(`/shop/${item.id}`)}
+                    onClick={() => navigate(`/shop/${item.id}`)}
                   >
                     Add to cart
                   </button>
@@ -140,8 +152,8 @@ const Shop = () => {
                   </div>
                 </div>
               </div>
-          </div>
-        )))
+            </div>
+          )))
         }
       </div>
 

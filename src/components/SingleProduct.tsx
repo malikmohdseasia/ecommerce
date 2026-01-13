@@ -205,7 +205,7 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
             <div className="w-full px-2 lg:px-0 lg:w-1/2 text-center lg:text-start">
               <h1 className="font-poppins text-[18px] lg:text-[42px]">{product?.title}</h1>
               <p className="font-poppins text-lg lg:text-[24px] text-footer">Rs. {Math.round(product?.price*83)}</p>
-              <div className="flex justify-center items-center gap-4.5 mt-3.75">
+              <div className="flex justify-center lg:justify-start items-center  gap-4.5 mt-3.75">
                 {RatingIcon}
                 <p className="border-l border-footer pl-5.5 text-footer text-[13px]">
                   5 Customer Review

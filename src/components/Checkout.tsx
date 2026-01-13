@@ -14,14 +14,17 @@ const Checkout = () => {
                     <h1 className="text-[#000000] text-[35px] lg:text-[48px] font-medium">Checkout</h1>
                     <div className="flex items-center">
 
-                        <Breadcrumb aria-label="Default breadcrumb example">
-                            <BreadcrumbItem href="/home" >
-                                <p className="font-poppins font-medium">Home</p>
+                        <Breadcrumb aria-label="Default breadcrumb example" className="flex items-center
+            group-first:hidden
+            ">
+                            <BreadcrumbItem
+                                href="/home"
+                                className="flex items-center"
+                            >
+                                <p className="font-poppins font-medium text-lg">Home</p>
                             </BreadcrumbItem>
-                        </Breadcrumb>
 
-                        <Breadcrumb aria-label="Default breadcrumb example" >
-                            <BreadcrumbItem href="/checkout"  >
+                            <BreadcrumbItem href="/checkout" className="flex items-center">
                                 <p className="font-poppins font-light text-[16px]">Checkout</p>
                             </BreadcrumbItem>
                         </Breadcrumb>

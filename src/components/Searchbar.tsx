@@ -1,14 +1,30 @@
-import { SearchIco } from "../assets/Icons"
+import { SearchIco } from "../assets/Icons";
 
-const Searchbar = ({setSearchShow}:any) => {
+const Searchbar = ({ searchShow, setSearchShow }: any) => {
   return (
-    <div className="rounded-full border border-footer flex items-center px-3 lg:mx-2 lg:w-40 xl:w-50">
-      <input type="search" name="" id="" className="outline-none w-full " />
-     <button onClick={()=>setSearchShow(false)}
-      className="cursor-pointer"
-      > {SearchIco}</button>
-    </div>
-  )
-}
+    <div
+      className={`
+        rounded-full border border-footer flex items-center px-3
+        transition-all duration-300 ease-in-out overflow-hidden
+        ${searchShow
+          ? "w-40 xl:w-50 opacity-100 mx-2"
+          : "w-0 opacity-0 mx-0 border-transparent"}
+      `}
+    >
+      <input
+        type="search"
+        placeholder="Search..."
+        className="outline-none w-full bg-transparent text-sm"
+      />
 
-export default Searchbar
+      <button
+        onClick={() => setSearchShow(false)}
+        className="cursor-pointer ml-2"
+      >
+        {SearchIco}
+      </button>
+    </div>
+  );
+};
+
+export default Searchbar;

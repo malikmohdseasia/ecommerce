@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { CrossCart, crossIcon, Xicon } from "../assets/Icons";
 
 const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr, setIsOpen }: any) => {
-
     const navigate = useNavigate();
 
     const handleRemoveItem = (id: number) => {
@@ -17,9 +16,6 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr, setIsOpen }: 
 
     subtotal = Math.round(subtotal);
 
-
-
-
     return (
         <>
 
@@ -27,7 +23,10 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr, setIsOpen }: 
             cartShow && <div className="fixed inset-0 bg-black/50 z-40"></div>
         }
 
-            {cartShow && <div className="fixed z-50 top-0 right-0 bg-white px-5 py-7 h-[90vh] overflow-y-scroll scrollbar-hide ">
+           <div className={`fixed z-50 top-0 right-0 bg-white px-5 py-7 h-[90vh] overflow-y-scroll scrollbar-hide 
+            transition-all duration-300 ease-in-out 
+            ${cartShow ? 'w-[80%] lg:w-[30%] opacity-100 overflow-hidden':'w-0 opacity-0'}
+            `}>
                 <div className="flex justify-between items-center gap-10 lg:gap-0">
                     <h1 className="font-poppins font-semibold text-[24px]">Shopping Cart</h1>
                     <button className="cursor-pointer"
@@ -89,24 +88,34 @@ const CartSidebar = ({ cartShow, setCartShow, cartArr, setCartArr, setIsOpen }: 
                     <hr className="border border-hrLine mt-5.75" />
 
                     <div className="flex flex-col lg:flex-row items-center gap-3.5 mt-6.5">
-                        <button className="py-1.5 px-7.5 border rounded-full font-poppins text-[12px] cursor-pointer"
+                        <button className={`py-1.5 px-7.5 border rounded-full font-poppins text-[12px] 
+                        ${cartArr.length===0 ? 'cursor-not-allowed' :'cursor-pointer'}
+                        `}
                             onClick={() => {
                                 navigate('/cart')
                                 setCartShow(false)
                                 setIsOpen(false)
-                            }}
-                        >cart</button>
-                        <button className="py-1.5 px-7.5 border rounded-full font-poppins text-[12px] cursor-pointer"
+                                
+                            }
+                        }                        
+                       
+                     disabled={cartArr.length===0}
+                       >cart</button>
+                      
+
+                        <button className={`py-1.5 px-7.5 border rounded-full font-poppins text-[12px] 
+                        ${cartArr.length===0 ? 'cursor-not-allowed' :'cursor-pointer'}
+                        `}
                         onClick={()=>{navigate("/checkout")
                               setCartShow(false);
                               setIsOpen(false)
                         }}
-                        
+                        disabled={cartArr.length===0}
                         >Checkout</button>
                         <button className="py-1.5 px-7.5 border rounded-full font-poppins text-[12px] cursor-pointer">Comparison</button>
                     </div>
                 </div>
-            </div>}
+            </div>
         </>
     )
 }
