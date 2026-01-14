@@ -14,7 +14,7 @@ const Searchbar = ({ searchShow, setSearchShow }: any) => {
       <input
         type="search"
         placeholder="Search..."
-        className="outline-none w-full bg-transparent text-sm"
+        className="outline-none w-full bg-transparent text-sm p-1"
       />
 
       <button

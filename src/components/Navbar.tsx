@@ -6,13 +6,13 @@ import { useState } from "react";
 import CartSidebar from "./CartSidebar";
 import Searchbar from "./Searchbar";
 
-const Navbar = ({ cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchShow }: any) => {
+const Navbar = ({ cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchShow, cartShow,  setCartShow}: any) => {
   const [openLogout, setOpenLogout] = useState(false);
   const [showEmail, setShowEmail] = useState<Boolean>(false);
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   let email = user?.email;
   let dataName = email.split('@')[0];
-  const [cartShow, setCartShow] = useState<any>(false);
+ 
   const navigate = useNavigate();
 
   const items = [
@@ -57,12 +57,26 @@ const Navbar = ({ cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchS
           </h1>
         </div>
 
-        <div
-          className={`
-        ${isOpen ? "flex" : "hidden"} flex-col lg:flex lg:flex-row gap-5 -mt-3 lg:mt-0 lg:gap-8
-        xl:gap-18.75
-      `}
-        >
+      <div
+  className={`
+    flex flex-col lg:flex-row gap-5 lg:gap-8 xl:gap-18.75
+    -mt-3 lg:mt-0
+    transition-all duration-300 ease-in-out
+
+    ${
+      isOpen
+        ? "opacity-100 translate-y-0 max-h-96"
+        : "opacity-0 -translate-y-2 max-h-0 overflow-hidden pointer-events-none"
+    }
+
+    lg:opacity-100
+    lg:translate-y-0
+    lg:max-h-none
+    lg:pointer-events-auto
+  `}
+>
+
+
           {items?.map((item, index) => (
             <NavLink
               key={index}
@@ -78,8 +92,8 @@ const Navbar = ({ cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchS
 
           <Searchbar searchShow={searchShow} setSearchShow={setSearchShow} />
 
-          <Logout isOpen={openLogout} onClose={() => setOpenLogout(false)} />
 
+        </div>
           <CartSidebar
             cartShow={cartShow}
             setCartShow={setCartShow}
@@ -88,7 +102,7 @@ const Navbar = ({ cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchS
             isOpen={isOpen}
             setIsOpen={setIsOpen}
           />
-        </div>
+          <Logout isOpen={openLogout} onClose={() => setOpenLogout(false)} />
 
         <div
           className={`

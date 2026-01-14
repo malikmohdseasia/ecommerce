@@ -73,7 +73,17 @@ const itemsRelated = [
 ];
 
 
-const SingleProduct = ({ cartArr, setCartArr }: any) => {
+const SingleProduct = ({ cartArr, setCartArr, setCartShow }: any) => {
+
+
+  const formatINR = (price: any) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 0,
+    }).format(price * 90);
+  };
+
 
   const [products, setProducts] = useState<any>([]);
   const [loading, setLoading] = useState(false);
@@ -92,11 +102,11 @@ const SingleProduct = ({ cartArr, setCartArr }: any) => {
   const product = products.find((item: any) => item.id == id);
 
   const cartProduct = cartArr.find(
-  (item: any) => item.id === product?.id
-);
+    (item: any) => item.id === product?.id
+  );
 
-const quantity = cartProduct ? cartProduct.quantity : 0;
-
+  const quantity = cartProduct ? cartProduct.quantity : 0;
+  console.log(quantity <= 0)
 
   useEffect(() => {
     getData();
@@ -137,23 +147,23 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
   };
 
   const handleDecrease = () => {
-  if (!cartProduct) return;
+    if (!cartProduct) return;
 
-  setCartMessage("");
+    setCartMessage("");
 
-  if (cartProduct.quantity === 1) {
-    setCartArr(cartArr.filter((item: any) => item.id !== product.id));
-    return;
-  }
+    if (cartProduct.quantity === 1) {
+      setCartArr(cartArr.filter((item: any) => item.id !== product.id));
+      return;
+    }
 
-  setCartArr(
-    cartArr.map((item: any) =>
-      item.id === product.id
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
-    )
-  );
-};
+    setCartArr(
+      cartArr.map((item: any) =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
 
 
 
@@ -167,19 +177,22 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
         <div className="">
           <div className="bg-[#F9F1E7] px-2 lg:pl-25 py-9.5 flex items-center gap-2 lg:gap-6">
             <div className="flex items-center gap-3.5">
-              <Breadcrumb aria-label="Default breadcrumb example" >
-                <BreadcrumbItem href="/home"  >
-                  <p className="font-poppins font-light text-[16px]">Home</p>
+              <Breadcrumb aria-label="Default breadcrumb example" className="flex items-center group-first:hidden ">
+                <BreadcrumbItem
+                  href="/home"
+                  className="flex items-center"
+                >
+                  <p className="font-poppins font-medium text-lg">Home</p>
+                </BreadcrumbItem>
+
+                <BreadcrumbItem href="/shop" className="flex items-center">
+                  <p className="font-poppins font-light text-[16px]">Shop</p>
                 </BreadcrumbItem>
               </Breadcrumb>
             </div>
 
             <div className="flex items-center gap-3.5">
-              <Breadcrumb aria-label="Default breadcrumb example" >
-                <BreadcrumbItem href="/shop"  >
-                  <p className="font-poppins font-light text-[16px] pr-5 lg:pr-0">Shop</p>
-                </BreadcrumbItem>
-              </Breadcrumb>
+
             </div>
 
             <div className="border-l-2 border-footer pl-8.5">
@@ -192,7 +205,7 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
               <div className="flex flex-col gap-8">
                 {items.map((item, index) => (
                   <div key={index}>
-                    <img src={item} alt="" className="object-contain  lg:w-full"/>
+                    <img src={item} alt="" className="object-contain  lg:w-full" />
                   </div>
                 ))}
               </div>
@@ -204,7 +217,7 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
 
             <div className="w-full px-2 lg:px-0 lg:w-1/2 text-center lg:text-start">
               <h1 className="font-poppins text-[18px] lg:text-[42px]">{product?.title}</h1>
-              <p className="font-poppins text-lg lg:text-[24px] text-footer">Rs. {Math.round(product?.price*83)}</p>
+              <p className="font-poppins text-lg lg:text-[24px] text-footer"> {formatINR(product?.price)}</p>
               <div className="flex justify-center lg:justify-start items-center  gap-4.5 mt-3.75">
                 {RatingIcon}
                 <p className="border-l border-footer pl-5.5 text-footer text-[13px]">
@@ -233,35 +246,41 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
               </div>
 
               {cartMessage && (
-                  <p className="text-red-500 text-sm mt-3 font-poppins">
-                    {cartMessage}
-                  </p>
-                )}
+                <p className="text-red-500 text-sm mt-3 font-poppins">
+                  {cartMessage}
+                </p>
+              )}
 
               <div className="mt-8 flex flex-col lg:flex-row items-center gap-2.5 ">
                 <div className=" cursor-pointer flex items-center justify-between px-3 border border-footer h-17 w-30.75 rounded-[10px]">
                   <button className="cursor-pointer"
-                  onClick={handleDecrease}
-                  disabled={quantity===0}
+                    onClick={handleDecrease}
+                    disabled={quantity === 0}
                   >
                     <FaMinus />
                   </button>
                   <p className="cursor-pointer">{quantity}</p>
                   <button className="cursor-pointer"
-                  onClick={handleAddToCart}
+                    onClick={handleAddToCart}
                   >
                     <FaPlus />
                   </button>
                 </div>
 
                 <div className="cursor-pointer flex items-center justify-center px-3.75 border border-footer h-17 w-53.75 rounded-[10px]"
-                 onClick={handleAddToCart}
+                  onClick={()=>{quantity <=0 ? handleAddToCart() :  setCartShow(true)}}
                 >
-                  <button className="cursor-pointer"
-                    onClick={handleAddToCart}
-                  >Add To Cart</button>
+                  {
+                    quantity <= 0 ? <button className="cursor-pointer"
+                      onClick={handleAddToCart}
+                    >Add To Cart</button> : <button className="cursor-pointer"
+                      onClick={() =>
+                        setCartShow(true)}
+
+                    >Go To Cart</button>
+                  }
                 </div>
-                
+
 
 
                 <div className="cursor-pointer flex items-center justify-center gap-2.5 px-3.75 border border-footer h-17 w-53.75 rounded-[10px]">
@@ -280,13 +299,13 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
 
                     <div className="text-footer">:</div>
                     <div className="flex flex-col lg:flex-row gap-2">
-                     {item.desc?.split(',').map((itemDESC, index)=>(
-                      <div key={index} >
+                      {item.desc?.split(',').map((itemDESC, index) => (
+                        <div key={index} >
 
-                      <p className="font-poppins text-footer">{itemDESC},
-                     </p>
-                      </div>
-                     ))}
+                          <p className="font-poppins text-footer">{itemDESC},
+                          </p>
+                        </div>
+                      ))}
                       <div className="flex flex-col lg:flex-row items-center gap-1 lg:gap-6.25">
                         {item.title === "Share" &&
                           svgItems.map((item, index) => (
@@ -332,7 +351,7 @@ const quantity = cartProduct ? cartProduct.quantity : 0;
 
             <div className="mt-9 flex flex-col lg:flex-row items-center justify-center gap-7.25 px-2 lg:px-25">
               <div>
-                <img src={GROUP1} alt=""  />
+                <img src={GROUP1} alt="" />
               </div>
 
               <div className="">

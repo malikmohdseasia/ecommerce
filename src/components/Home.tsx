@@ -264,11 +264,11 @@ const Home = () => {
             className="w-full px-5 lg:px-0 lg:w-70 transition-all duration-500 h-100  "
           />
 
-          <div className="mt-10 flex gap-2 ">
+          <div className="mt-10 flex gap-2 justify-center lg:justify-start">
             {sliderImages.map((_, index) => (
               <span
                 key={index}
-                className={` ml-4 lg:ml-0 w-3 h-3 rounded-full ${currentSlide === index
+                className={`  lg:ml-0 w-3 h-3 rounded-full ${currentSlide === index
                     ? "bg-[#B88E2F] border-[#B88E2F]"
                     : "bg-gray-300"
                   }`}
@@ -309,16 +309,16 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="flex items-center">
-            <img src={IMG40} className="mx-auto mt-5 w-full h-120 lg:h-98 xl:w-60 lg:w-40 lg:ml-10 xl:ml-2 object-contain" />
+          <div className="flex items-center lg:ml-5 xl:ml-18">
+            <img src={IMG40} className=" mt-5 w-full h-120 lg:h-98 xl:w-60 lg:w-20 lg:ml-10 xl:ml-2 object-contain" />
           </div>
 
           <div className="flex flex-col gap-4 mt-6 lg:ml-10 mx-auto">
             <div className="flex gap-4 items-end px-3 xl:px-0">
-              <img src={IMG42} className="w-72.5 h-87 object-contain" />
+              <img src={IMG42} className="w-72.5 h-87 object-contain lg:w-60" />
               <img src={IMG44} className="h-108.25 object-contain" />
             </div>
-            <div className="flex gap-4 px-3 xl:px-0">
+            <div className="flex gap-4 px-3 xl:px-0 ">
               <img src={IMG41} className="h-60.5 object-contain" />
               <img src={IMG43} className="h-49 object-contain" />
             </div>

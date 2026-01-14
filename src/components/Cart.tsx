@@ -4,8 +4,22 @@ import { useNavigate } from "react-router-dom";
 import Award from "./Award";
 import { DeleteIcon } from "../assets/Icons";
 import DataTable from "react-data-table-component";
+import { useState } from "react";
 
 const Cart = ({ cartArr, setCartArr }: any) => {
+
+    const formatINR = (price: any) => {
+        return new Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: "INR",
+            maximumFractionDigits: 0,
+        }).format(price * 90);
+    };
+
+
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [deleteId, setDeleteId] = useState(null);
+
 
     const removeItem = (id: any) => {
         const updatedCart = cartArr.filter((item: any) => item.id !== id);
@@ -14,11 +28,15 @@ const Cart = ({ cartArr, setCartArr }: any) => {
     };
 
 
-    let subtotal = 0;
+    let subtotal:any = 0;
     cartArr.forEach((item: any) => {
-        subtotal += item.price * item.quantity * 83;
+        subtotal += item.price * item.quantity*90;
     });
-    subtotal = Math.round(subtotal);
+    subtotal = new Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: "INR",
+            maximumFractionDigits: 0,
+        }).format(subtotal);
 
     const navigate = useNavigate();
 
@@ -53,7 +71,7 @@ const Cart = ({ cartArr, setCartArr }: any) => {
             name: 'Price',
             cell: (row: any) => (
                 <span className="font-poppins text-footer">
-                    Rs {Math.round(row.price * 83)}
+                 {formatINR(row.price)}
                 </span>
             ),
         },
@@ -69,16 +87,23 @@ const Cart = ({ cartArr, setCartArr }: any) => {
             name: 'Subtotal',
             cell: (row: any) => (
                 <span className="font-poppins">
-                    Rs {Math.round(row.quantity * row.price * 83)}
+                    {formatINR(row.quantity*row.price)}
                 </span>
             ),
         },
         {
             name: 'Actions',
             cell: (row: any) => (
-                <button className="cursor-pointer" onClick={() => removeItem(row.id)}>
+                <button
+                    className="cursor-pointer"
+                    onClick={() => {
+                        setDeleteId(row.id);
+                        setOpenDeleteModal(true);
+                    }}
+                >
                     {DeleteIcon}
                 </button>
+
             ),
             ignoreRowClick: true,
             allowOverflow: true,
@@ -87,16 +112,16 @@ const Cart = ({ cartArr, setCartArr }: any) => {
     ];
 
     const customStyles = {
-        rows:{
-            style:{
-                borderBottom:'none',
-                padding:'10px 0 10px 0'
+        rows: {
+            style: {
+                borderBottom: 'none',
+                padding: '10px 0 10px 0'
             }
         },
-        headRow:{
-            style:{
-                backgroundColor:"#F9F1E7",
-                borderBottom:'none'
+        headRow: {
+            style: {
+                backgroundColor: "#F9F1E7",
+                borderBottom: 'none'
             }
         }
     }
@@ -106,6 +131,41 @@ const Cart = ({ cartArr, setCartArr }: any) => {
 
     return (
         <div className="">
+
+            {openDeleteModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+                    <div className="bg-white rounded-xl p-6 w-container max-w-md">
+                        <h3 className="text-lg font-semibold text-red-600 font-poppins">
+                            Delete Item
+                        </h3>
+
+                        <p className="mt-2 text-gray-600 mb- font-poppins">
+                            Are you sure you want to delete this item?
+                        </p>
+
+                        <div className="flex justify-end gap-3 mt-6">
+                            <button
+                                onClick={() => setOpenDeleteModal(false)}
+                                className="font-poppins px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                onClick={() => {
+                                    removeItem(deleteId);
+                                    setOpenDeleteModal(false);
+                                }}
+                                className="font-poppins px-5 py-2 rounded-md bg-[#B88E2F] text-white hover:bg-red-600 cursor-pointer"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
             <div className="bg-[url(./assets/shopImg.jpg)] h-79 bg-cover bg-center w-full relative flex items-center justify-center">
                 <div className="absolute inset-0 bg-black/5 backdrop-blur-sm"></div>
 
@@ -140,66 +200,13 @@ const Cart = ({ cartArr, setCartArr }: any) => {
                                 columns={columns}
                                 data={cartArr}
                                 customStyles={customStyles}
+                                noDataComponent={
+                                    <h1 className="font-poppins text-footer ">No Items In Cart!</h1>
+                                }
                             />
-                            {/* <h1 className="font-poppins">Product</h1>
-                            <h1 className="font-poppins">Price</h1> */}
-                            <div className="flex gap-9 items-center">
-                                {/* <h1 className="font-poppins">Quantity</h1>
-                                <h1 className="font-poppins">Subtotal</h1> */}
-                            </div>
                         </div>
 
-                        {/* {
-                            cartArr.length > 0 ? cartArr?.map((item: any) => (
-
-                                <div className="flex flex-col lg:flex-row items-center justify-center">
-
-                                    <div
-                                        key={item.id}
-                                        className="flex flex-col lg:flex-row gap-5 xl:gap-22 items-center mt-13.75 "
-                                    >
-                                        <div className="flex flex-col lg:flex-row items-center gap-5 xl:gap-9.5 relative">
-                                            <img src={item.image} alt="" className="w-full lg:w-27 lg:h-26.25 object-contain" />
-
-                                            <h1 className="font-poppins text-footer w-full lg:w-20 text-center xl:text-start">
-                                                {item.title}
-                                            </h1>
-                                            <h1 className="font-poppins text-footer">
-                                                Rs. {Math.round(item.price * 83)}
-                                            </h1>
-                                        </div>
-
-
-                                        <div className="flex items-center gap-2 xl:gap-20 ">
-
-
-                                            <div className="flex items-center justify-center w-8 h-8 border border-footer rounded-[5px]">
-                                                {item.quantity}
-                                            </div>
-
-                                            <h1>
-                                                Rs.{Math.round(item.price * item.quantity * 83)}
-                                            </h1>
-
-
-                                        </div>
-
-
-
-
-                                    </div>
-
-                                    <div className="xl:mt-15 xl:ml-10 -mt-8 -mr-35 xl:mr-0">
-                                        <button
-                                            onClick={() => removeItem(item.id)}
-                                            className="cursor-pointer"
-                                        >
-                                            {DeleteIcon}
-                                        </button>
-                                    </div>
-                                </div>
-                            )) : <div className="flex items-center justify-center h-full font-poppins text-footer"> <h1 className="font-poppins mt-5">No Item in cart!</h1> </div>
-                        } */}
+                      
                     </div>
 
                     <div className="bg-[#F9F1E7] px-5 lg:px-21.25">

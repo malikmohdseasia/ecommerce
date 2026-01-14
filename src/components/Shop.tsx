@@ -16,6 +16,7 @@ const Shop = () => {
   const [products, setProducts] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState<any>(1);
   const itemsPerPage = 4;
+  
 
   const getData = async () => {
     setLoading(true);
@@ -40,6 +41,15 @@ const Shop = () => {
 
 const start = (currentPage - 1) * itemsPerPage + 1;
 const end = currentPage * itemsPerPage;
+
+ const formatINR = (price: any) => {
+        return new Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: "INR",
+            maximumFractionDigits: 0,
+        }).format(price * 90);
+        
+    };
 
 
 
@@ -115,7 +125,7 @@ const end = currentPage * itemsPerPage;
 
                   <div className="mt-2 flex gap-4 items-center justify-center lg:justify-start">
                     <p className="font-poppins text-[#3A3A3A] font-semibold ">
-                      Rs {Math.round(item.price * 83)}
+                       {formatINR(item.price)}
                     </p>
                   </div>
                 </div>

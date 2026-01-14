@@ -136,7 +136,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={!!errors.email || !!errors.password}
-            className="w-full bg-black text-white py-2 rounded-lg hover:opacity-90 transition font-poppins disabled:opacity-50"
+            className="w-full cursor-pointer bg-black text-white py-2 rounded-lg hover:opacity-90 transition font-poppins disabled:opacity-50"
           >
             Login
           </button>

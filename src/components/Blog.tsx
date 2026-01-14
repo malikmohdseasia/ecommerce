@@ -52,10 +52,10 @@ const Blog = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row mt-8 lg:mt-26.5 gap-7.5 ">
-                <div className="w-full lg:w-[70%] p-2 lg:pl-25 ">
+            <div className="flex flex-col lg:flex-row mt-8 lg:mt-26.5">
+                <div className="w-full lg:w-[70%] p-2 lg:pl-25">
 
-                    <div className="xl:pr-10" >
+                    <div className="xl:pr-10 md:flex flex-col justify-center xl:justify-start items-center xl:items-start" >
                         <img src={IMG1} alt="" />
                         <div className="mt-4.25 flex items-center justify-center lg:justify-start gap-8.75 ">
                             <div className="flex items-center gap-1.75 ">
@@ -85,7 +85,7 @@ const Blog = () => {
                         </div>
                     </div>
 
-                    <div className="mt-13.5 xl:pr-10">
+                    <div className="mt-13.5 xl:pr-10 md:flex flex-col justify-center xl:justify-start items-center xl:items-start">
                         <img src={IMG2} alt="" />
                         <div className="mt-4.25 flex items-center justify-center lg:justify-start gap-8.75">
                             <div className="flex items-center gap-1.75">
@@ -115,7 +115,7 @@ const Blog = () => {
                         </div>
                     </div>
 
-                    <div className="mt-13.5 xl:pr-10">
+                    <div className="mt-13.5 xl:pr-10 md:flex flex-col justify-center xl:justify-start items-center xl:items-start">
                         <img src={IMG3} alt="" />
                         <div className="mt-4.25 flex items-center gap-8.75 justify-center lg:justify-start">
                             <div className="flex items-center gap-1.7 ">
