@@ -11,12 +11,12 @@ import { Breadcrumb, BreadcrumbItem } from "flowbite-react";
 import Award from "./Award";
 
 
-const Shop = () => {
+const Shop = ({ searchItem }: any) => {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState<any>(1);
   const itemsPerPage = 4;
-  
+
 
   const getData = async () => {
     setLoading(true);
@@ -32,24 +32,28 @@ const Shop = () => {
 
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
-  const currentProducts = products.slice(firstIndex, lastIndex);
+  const filteredProducts = products.filter((item: any) =>
+    item.title.toLowerCase().includes(searchItem.toLowerCase())
+  );
+  const currentProducts = filteredProducts.slice(firstIndex, lastIndex);
 
-  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const isLastPage = currentPage === totalPages;
   const navigate = useNavigate();
 
 
-const start = (currentPage - 1) * itemsPerPage + 1;
-const end = currentPage * itemsPerPage;
+  const start = (currentPage - 1) * itemsPerPage + 1;
+  const end = currentPage * itemsPerPage;
 
- const formatINR = (price: any) => {
-        return new Intl.NumberFormat("en-IN", {
-            style: "currency",
-            currency: "INR",
-            maximumFractionDigits: 0,
-        }).format(price * 90);
-        
-    };
+  const formatINR = (price: any) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 0,
+    }).format(price * 90);
+
+  };
+
 
 
 
@@ -58,7 +62,6 @@ const end = currentPage * itemsPerPage;
     <div>
       <div className="bg-[url(./assets/shopImg.jpg)] h-79 bg-cover bg-center w-full relative flex items-center justify-center">
         <div className="absolute inset-0 bg-black/5 backdrop-blur-sm  "></div>
-
         <div className="relative z-20 flex flex-col items-center justify-center ">
           <h1 className="text-[#000000] text-[35px] lg:text-[48px] font-medium">Shop</h1>
           <div className="flex items-center">
@@ -88,7 +91,7 @@ const end = currentPage * itemsPerPage;
           <h1 className="font-poppins text-[20px]">Filter</h1>
           {FourDot}
           <p className="border-l-2 border-footer pl-8.5 font-poppins">
-              Showing {start}–{end} of {products?.length} results
+            Showing {start}–{end} of {products?.length} results
           </p>
         </div>
 
@@ -111,87 +114,96 @@ const end = currentPage * itemsPerPage;
 
       <div className="mt-15.75 flex flex-wrap justify-center gap-8">
         {
-          loading ? <h1>Loading...</h1> : (currentProducts && currentProducts?.map((item: any, index: any) => (
-            <div key={index} className="bg-[#F4F5F7] relative group w-60 h-90 
+          loading ? <div className="flex items-center justify-center h-20">
+            <div className="w-8 h-8 border-4 border-gray-300 border-t-[#B88E2F] rounded-full animate-spin"></div>
+          </div>
+
+
+            : currentProducts.length === 0 ? <p className="font-poppins text-footer">Product Not Found!</p>
+
+              : (currentProducts && currentProducts?.map((item: any, index: any) => (
+                <div key={index} className="bg-[#F4F5F7] relative group w-60 h-90  
           "
-            >
-              <div className="relative text-center lg:text-start" >
-                <img src={item.image} alt="product" className="w-60 h-60 p-5" />
+                >
+                  <div className="relative text-center lg:text-start" >
+                    <img src={item.image} alt="product" className="w-60 h-60 p-5" />
 
-                <div className="py-4 px-5">
-                  <h1 className="font-poppins font-semibold text-[12px] text-[#3A3A3A] mt-4 line-clamp-2  ">
-                    {item.title}
-                  </h1>
+                    <div className="py-4 px-5">
+                      <h1 className="font-poppins font-semibold text-[12px] text-[#3A3A3A] mt-4 line-clamp-2  ">
+                        {item.title}
+                      </h1>
 
-                  <div className="mt-2 flex gap-4 items-center justify-center lg:justify-start">
-                    <p className="font-poppins text-[#3A3A3A] font-semibold ">
-                       {formatINR(item.price)}
-                    </p>
+                      <div className="mt-2 flex gap-4 items-center justify-center lg:justify-start">
+                        <p className="font-poppins text-[#3A3A3A] font-semibold ">
+                          {formatINR(item.price)}
+                        </p>
+                      </div>
+                    </div>
+
+
                   </div>
-                </div>
-
-
-              </div>
-              <div
-                className="absolute z-30 inset-0 bg-[#3A3A3A] opacity-0 group-hover:opacity-80 transition-opacity duration-300
+                  <div
+                    className="absolute z-30 inset-0 bg-[#3A3A3A] opacity-0 group-hover:opacity-80 transition-opacity duration-300
               flex items-center justify-center w-[110%] h-full
               "
-              onClick={() => navigate(`/shop/${item.id}`)}
-              >
-                <div className="flex flex-col gap-6 items-center ">
-                  <button className="text-[#B88E2F] cursor-pointer font-poppins font-semibold py-3 px-13 bg-white hover:text-blue-400"
                     onClick={() => navigate(`/shop/${item.id}`)}
                   >
-                    Add to cart
-                  </button>
-                  <div className="flex gap-5">
-                    <div className="flex items-center gap-1 font-poppins text-[#FFFFFF] cursor-pointer">
-                      {ShareIcon}
-                      <button className="cursor-pointer">Share</button>
-                    </div>
+                    <div className="flex flex-col gap-6 items-center ">
+                      <button className="text-[#B88E2F] cursor-pointer font-poppins font-semibold py-3 px-13 bg-white hover:text-blue-400"
+                        onClick={() => navigate(`/shop/${item.id}`)}
+                      >
+                        Add to cart
+                      </button>
+                      <div className="flex gap-5">
+                        <div className="flex items-center gap-1 font-poppins text-[#FFFFFF] cursor-pointer">
+                          {ShareIcon}
+                          <button className="cursor-pointer">Share</button>
+                        </div>
 
-                    <div className="flex items-center gap-1 font-poppins text-[#FFFFFF] cursor-pointer">
-                      {CompereIcon}
-                      <button className="cursor-pointer">Compare</button>
-                    </div>
+                        <div className="flex items-center gap-1 font-poppins text-[#FFFFFF] cursor-pointer">
+                          {CompereIcon}
+                          <button className="cursor-pointer">Compare</button>
+                        </div>
 
-                    <div className="flex items-center gap-1 font-poppins text-[#FFFFFF] cursor-pointer">
-                      {LikeIcon}
-                      <button className="cursor-pointer">Like</button>
+                        <div className="flex items-center gap-1 font-poppins text-[#FFFFFF] cursor-pointer">
+                          {LikeIcon}
+                          <button className="cursor-pointer">Like</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          )))
+              )))
         }
       </div>
 
-      <div className=" flex flex-wrap items-center gap-1 lg:gap-9.5 justify-center mt-17.5">
-        {[...Array(totalPages)].map((_, index) => (
+      {
+        filteredProducts.length > 0 && <div className=" flex flex-wrap items-center gap-1 lg:gap-9.5 justify-center mt-17.5 ">
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index + 1)}
+              className={`cursor-pointer font-poppins text-[20px] w-15 h-15 rounded-[10px]   ${currentPage === index + 1
+                ? "bg-[#B88E2F] text-white"
+                : "bg-[#F9F1E7]"
+                }`}
+            >
+              {index + 1}
+            </button>
+          ))}
           <button
-            key={index}
-            onClick={() => setCurrentPage(index + 1)}
-            className={`cursor-pointer font-poppins text-[20px] w-15 h-15 rounded-[10px]   ${currentPage === index + 1
-              ? "bg-[#B88E2F] text-white"
-              : "bg-[#F9F1E7]"
+            onClick={() => setCurrentPage((prev: any) => prev + 1)}
+            disabled={isLastPage}
+            className={` font-poppins w-15 h-15 rounded-[10px] 
+    ${isLastPage
+                ? "bg-[#B88E2F] text-white cursor-not-allowed"
+                : "bg-[#F9F1E7]"
               }`}
           >
-            {index + 1}
+            Next
           </button>
-        ))}
-        <button
-          onClick={() => setCurrentPage((prev: any) => prev + 1)}
-          disabled={isLastPage}
-          className={` w-15 h-15 rounded-[10px] 
-    ${isLastPage
-              ? "bg-[#B88E2F] text-white cursor-not-allowed"
-              : "bg-[#F9F1E7]"
-            }`}
-        >
-          Next
-        </button>
-      </div>
+        </div>
+      }
 
       <Award />
     </div>

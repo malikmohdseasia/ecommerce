@@ -21,6 +21,7 @@ const App = () => {
   const [cartArr, setCartArr] = useState<any>([]);
   const [searchShow, setSearchShow] = useState(false);
    const [cartShow, setCartShow] = useState<any>(false);
+   const [searchItem, setSearchItem] = useState<any>('');
 
 
   return (
@@ -40,7 +41,7 @@ const App = () => {
 
           <Route path="/signup" element={<LoginRoute><SignUp /></LoginRoute>} />
 
-          <Route element={<Layout cartShow={cartShow}  setCartShow={setCartShow} isOpen={isOpen} setIsOpen={setIsOpen} cartArr={cartArr} setCartArr={setCartArr} 
+          <Route element={<Layout searchItem={searchItem} setSearchItem={setSearchItem} cartShow={cartShow}  setCartShow={setCartShow} isOpen={isOpen} setIsOpen={setIsOpen} cartArr={cartArr} setCartArr={setCartArr} 
           searchShow={searchShow} setSearchShow={setSearchShow}
           />}>
             <Route
@@ -55,7 +56,7 @@ const App = () => {
               path="/shop"
               element={
                 <ProtectedRoute>
-                  <Shop />
+                  <Shop searchItem={searchItem} setSearchItem={setSearchItem} />
                 </ProtectedRoute>
               }
             />

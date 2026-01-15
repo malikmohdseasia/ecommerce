@@ -27,7 +27,8 @@ const Checkout = ({ cartArr, setCartArr }: any) => {
         address: '',
         city: '',
         zipCode: '',
-        email: ''
+        email: '',
+        phone:''
     })
 
 
@@ -55,6 +56,10 @@ const Checkout = ({ cartArr, setCartArr }: any) => {
 
         if (form.zipCode.trim() === '') {
             newErrors.zipCode = 'Zip Code Is Empty!'
+        }
+
+        if (form.phone.trim() === '') {
+            newErrors.phone = 'Phone Is Empty!'
         }
 
         if (form.email.trim() === '') {
@@ -145,7 +150,7 @@ const Checkout = ({ cartArr, setCartArr }: any) => {
 
                     </div>
                     <div className="flex flex-col gap-2">
-                        <label className="font-poppins font-medium text-footer">Company Name (Optional)</label>
+                        <label className="font-poppins font-medium">Company Name (Optional)</label>
                         <input 
                         value={form.company}
                         onChange={(e)=>setForm({...form, company:e.target.value})}
@@ -205,11 +210,12 @@ const Checkout = ({ cartArr, setCartArr }: any) => {
                             error?.zipCode && <h1 className="font-poppins text-[10px] text-red-500 font-medium">{error?.zipCode}</h1>
                         }
                     </div> <div className="flex flex-col gap-2">
-                        <label className="font-poppins font-medium">Phone (Optional)</label>
+                        <label className="font-poppins font-medium">Phone</label>
                         <input 
                         value={form.phone}
                         onChange={(e)=>setForm({...form, phone:e.target.value})}
                         type="text" name="" id="" className="text-footer p-3 border border-footer rounded-[10px] h-10 outline-none" />
+                       {error.phone && <h1 className="font-poppins text-[10px] text-red-500 font-medium">{error.phone}</h1>}
                     </div> <div className="flex flex-col gap-2">
                         <label className="font-poppins font-medium">Email address</label>
                         <input

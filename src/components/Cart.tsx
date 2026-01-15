@@ -5,6 +5,7 @@ import Award from "./Award";
 import { DeleteIcon } from "../assets/Icons";
 import DataTable from "react-data-table-component";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Cart = ({ cartArr, setCartArr }: any) => {
 
@@ -24,7 +25,9 @@ const Cart = ({ cartArr, setCartArr }: any) => {
     const removeItem = (id: any) => {
         const updatedCart = cartArr.filter((item: any) => item.id !== id);
         setCartArr(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        toast.success('Successfully Removed!', {
+position: "bottom-center",
+});
     };
 
 

@@ -6,7 +6,7 @@ import { useState } from "react";
 import CartSidebar from "./CartSidebar";
 import Searchbar from "./Searchbar";
 
-const Navbar = ({ cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchShow, cartShow,  setCartShow}: any) => {
+const Navbar = ({searchItem, setSearchItem, cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchShow, cartShow,  setCartShow}: any) => {
   const [openLogout, setOpenLogout] = useState(false);
   const [showEmail, setShowEmail] = useState<Boolean>(false);
   const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -33,8 +33,6 @@ const Navbar = ({ cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchS
   for (const item of cartArr) {
     totalCartItems += item.quantity;
   }
-
-
 
   return (
 
@@ -90,7 +88,7 @@ const Navbar = ({ cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchS
             </NavLink>
           ))}
 
-          <Searchbar searchShow={searchShow} setSearchShow={setSearchShow} />
+          <Searchbar searchItem={searchItem} setSearchItem={setSearchItem} searchShow={searchShow} setSearchShow={setSearchShow} />
 
 
         </div>
@@ -120,7 +118,7 @@ const Navbar = ({ cartArr, setCartArr, isOpen, setIsOpen, searchShow, setSearchS
               onClick={() => {
                 if (item.title === "profile") setOpenLogout(true);
                 if (item.title === "cart") setCartShow(true);
-                if (item.title === 'search') setSearchShow((pre: any) => !pre);
+                if (item.title ==='search') setSearchShow((pre: any) => !pre);
               }}
               onMouseEnter={() =>
                 item.title === "profile" && setShowEmail(true)

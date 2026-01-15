@@ -168,12 +168,14 @@ const SingleProduct = ({ cartArr, setCartArr, setCartShow }: any) => {
 
 
 
-  if (!product) return <h1>Loading...!</h1>
+  if (!product) return <div className="w-full h-screen">
+    <div className="bg-white fixed inset-0 transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-4 border-gray-300 border-t-[#B88E2F] rounded-full animate-spin"></div>
+  </div>
 
 
   return (
     <>
-      {loading ? (<h1>loading....</h1>) :
+      {loading ? (<div className="w-8 h-8 border-4 border-gray-300 border-t-[#B88E2F] rounded-full animate-spin"></div>) :
         <div className="">
           <div className="bg-[#F9F1E7] px-2 lg:pl-25 py-9.5 flex items-center gap-2 lg:gap-6">
             <div className="flex items-center gap-3.5">

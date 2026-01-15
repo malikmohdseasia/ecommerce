@@ -1,6 +1,6 @@
 import { SearchIco } from "../assets/Icons";
 
-const Searchbar = ({ searchShow, setSearchShow }: any) => {
+const Searchbar = ({ searchShow, setSearchShow, searchItem, setSearchItem }: any) => {
   return (
     <div
       className={`
@@ -15,6 +15,8 @@ const Searchbar = ({ searchShow, setSearchShow }: any) => {
         type="search"
         placeholder="Search..."
         className="outline-none w-full bg-transparent text-sm p-1"
+        value={searchItem}
+        onChange={(e)=>setSearchItem(e.target.value)}
       />
 
       <button
