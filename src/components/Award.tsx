@@ -6,7 +6,7 @@ const Award = () => {
         <div className="flex flex-col lg:flex-row items-center gap-2.5 text-center lg:text-start">
           <div>{AwardIcon}</div>
           <div>
-            <h1 className="text-[#242424] text-[18px] lg:text-[25px] font-poppins font-semibold ">
+            <h1 className="text-[#242424] text-[18px] lg:text-[20px] font-poppins font-semibold ">
               High Quality
             </h1>
             <p className="text-[#898989] text-lg lg:text-[20px] font-medium font-poppins">
@@ -18,7 +18,7 @@ const Award = () => {
         <div className="flex flex-col lg:flex-row text-center lg:text-start items-center gap-2.5">
           <div>{Warranty}</div>
           <div>
-            <h1 className="text-[#242424] text-[18px] lg:text-[25px] font-poppins font-semibold">
+            <h1 className="text-[#242424] text-[18px] lg:text-[20px] font-poppins font-semibold">
               Warranty Protection
             </h1>
             <p className="text-[#898989] text-[20px] font-medium font-poppins">
@@ -31,7 +31,7 @@ const Award = () => {
           <div>{Shipping}</div>
 
           <div>
-            <h1 className="text-[#242424] text-[18px] lg:text-[25px] font-poppins font-semibold">
+            <h1 className="text-[#242424] text-[18px] lg:text-[20px] font-poppins font-semibold">
               Free Shipping
             </h1>
             <p className="text-[#898989] text-[20px] font-medium font-poppins">
@@ -44,7 +44,7 @@ const Award = () => {
           <div>{Support}</div>
 
           <div>
-            <h1 className="text-[#242424] text-[18px] lg:text-[25px] font-poppins font-semibold">
+            <h1 className="text-[#242424] text-[18px] lg:text-[20px] font-poppins font-semibold">
               24 / 7 Support
             </h1>
             <p className="text-[#898989] text-[20px] font-medium font-poppins">

@@ -117,13 +117,13 @@ const Home = () => {
         <div className="flex justify-center ml-15 lg:ml-0 lg:justify-end">
           <div></div>
           <div className="lg:bg-[#FFF3E3] bg-transparent  pt-15.5 pb-9.25 mr-14.5 pl-9.75 pr-10.75 mt-38.25 text-center lg:text-start">
-            <h1 className="font-semibold font-poppins text-home">
+            <h1 className="font-semibold font-poppins text-home md:text-[20px]">
               New Arrival
             </h1>
-            <h2 className="font-bold font-poppins text-[20px] lg:text-[52px]  text-[#B88E2F]">
+            <h2 className="font-bold font-poppins text-[20px] md:text-[50px] lg:text-[52px]  text-[#B88E2F]">
               Discover Our <br /> New Collection
             </h2>
-            <p className="font-medium text-[12px] lg:text-[18px] text-home">
+            <p className="font-medium text-[12px] md:text-[16px] lg:text-[18px] text-home">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut <br />{" "}
               elit tellus, luctus nec ullamcorper mattis.
             </p>
@@ -296,35 +296,39 @@ const Home = () => {
         <h1 className="font-Montserrat font-bold text-center text-[20px] lg:text-[40px] ">
           #FuniroFurniture
         </h1>
-        <div className="mt-2 lg:mt-10 flex flex-col lg:flex-row justify-center overflow-hidden">
+       <div className="mt-2 lg:mt-10 flex flex-col lg:flex-row justify-center overflow-hidden">
 
-          <div className="flex flex-col gap-4 mt-12 lg:mr-10 mx-auto">
-            <div className="flex gap-4 items-end px-4 xl:px-0">
-              <img src={IMG36} className="h-95.5 object-contain" />
-              <img src={IMG38} className="xl:h-78 xl:w-112.75 lg:w-90 object-contain" />
-            </div>
-            <div className="flex gap-4 px-3 xl:px-0">
-              <img src={IMG37} className="h-80.75 object-contain" />
-              <img src={IMG39} className="h-60.5 xl:w-86 lg:w-70" />
-            </div>
-          </div>
+  <div className="flex flex-col gap-4 mt-12 mx-auto lg:mx-0">
+    <div className="flex gap-4 items-end px-4 xl:px-0">
+      <img src={IMG36} className="h-95.5 object-contain" />
+      <img src={IMG38} className="xl:h-78 xl:w-md lg:w-80 object-contain" />
+    </div>
+    <div className="flex gap-4 px-3 xl:px-0">
+      <img src={IMG37} className="h-80.75 object-contain" />
+      <img src={IMG39} className="h-60.5 lg:w-50 xl:w-85" />
+    </div>
+  </div>
 
-          <div className="flex items-center lg:ml-5 xl:ml-18">
-            <img src={IMG40} className=" mt-5 w-full h-120 lg:h-98 xl:w-60 lg:w-20 lg:ml-10 xl:ml-2 object-contain" />
-          </div>
+  <div className="flex items-center mx-4 sm:mx-8 lg:mx-5 lg:ml-30 xl:mx-5 xl:ml-8">
+    <img
+      src={IMG40}
+      className="mt-5 w-full h-120 lg:h-98 xl:w-50 lg:w-50 object-contain"
+    />
+  </div>
 
-          <div className="flex flex-col gap-4 mt-6 lg:ml-10 mx-auto">
-            <div className="flex gap-4 items-end px-3 xl:px-0">
-              <img src={IMG42} className="w-72.5 h-87 object-contain lg:w-60" />
-              <img src={IMG44} className="h-108.25 object-contain" />
-            </div>
-            <div className="flex gap-4 px-3 xl:px-0 ">
-              <img src={IMG41} className="h-60.5 object-contain" />
-              <img src={IMG43} className="h-49 object-contain" />
-            </div>
-          </div>
+  <div className="flex flex-col gap-4 mt-6 mx-auto lg:mx-0">
+    <div className="flex gap-4 items-end px-3 xl:px-0">
+      <img src={IMG42} className="w-72.5 object-contain lg:w-60" />
+      <img src={IMG44} className="h-108.25 object-contain" />
+    </div>
+    <div className="flex gap-4 px-3 xl:px-0">
+      <img src={IMG41} className="h-60.5 object-contain" />
+      <img src={IMG43} className="h-49 object-contain" />
+    </div>
+  </div>
 
-        </div>
+</div>
+
 
 
       </div>
