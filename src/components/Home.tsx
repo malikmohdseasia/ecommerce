@@ -115,7 +115,6 @@ const Home = () => {
         className={`bg-[url(./assets/home.jpg)] h-screen bg-cover bg-center w-full`}
       >
         <div className="flex justify-center ml-15 lg:ml-0 lg:justify-end">
-          <div></div>
           <div className="lg:bg-[#FFF3E3] bg-transparent  pt-15.5 pb-9.25 mr-14.5 pl-9.75 pr-10.75 mt-38.25 text-center lg:text-start">
             <h1 className="font-semibold font-poppins text-home md:text-[20px]">
               New Arrival
