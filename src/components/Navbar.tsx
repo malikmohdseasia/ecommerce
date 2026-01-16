@@ -81,7 +81,7 @@ const Navbar = ({searchItem, setSearchItem, cartArr, setCartArr, isOpen, setIsOp
             <NavLink
               key={index}
               to={item.route}
-              onClick={() => setIsOpen(false)}
+              onClick={() => {setIsOpen(false), setSearchShow(false)}}
               className={({ isActive }) =>
                 `font-medium font-poppins ${isActive ? " text-[#B88E2F] border-b-3 border-yellow-500" : ""}`
               }
