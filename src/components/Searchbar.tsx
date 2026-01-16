@@ -4,9 +4,9 @@ const Searchbar = ({ searchShow, setSearchShow, searchItem, setSearchItem }: any
   return (
     <div
       className={`
-        rounded-full border border-footer flex items-center px-3
+        rounded-full border border-footer flex items-center px-3 mt-5 lg:mt-0 xl:mt-0 ml-0 
         transition-all duration-300 ease-in-out overflow-hidden
-        ${searchShow
+        ${searchShow 
           ? "w-40 xl:w-50 opacity-100 mx-2"
           : "w-0 opacity-0 mx-0 border-transparent"}
       `}

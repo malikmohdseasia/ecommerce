@@ -40,7 +40,9 @@ const Navbar = ({searchItem, setSearchItem, cartArr, setCartArr, isOpen, setIsOp
       <div className="w-container mx-auto flex flex-col lg:flex-row mt-0 lg:mt-0 lg:items-center items-start lg:justify-between py-5">
 
         <button
-          onClick={() => setIsOpen((pre: any) => !pre)}
+          onClick={() => {setIsOpen((pre: any) => !pre)
+            setSearchShow(false)
+          }}
           className="flex lg:hidden mb-4"
         >
           ≣
@@ -88,7 +90,6 @@ const Navbar = ({searchItem, setSearchItem, cartArr, setCartArr, isOpen, setIsOp
             </NavLink>
           ))}
 
-          <Searchbar searchItem={searchItem} setSearchItem={setSearchItem} searchShow={searchShow} setSearchShow={setSearchShow} />
 
 
         </div>
@@ -101,6 +102,7 @@ const Navbar = ({searchItem, setSearchItem, cartArr, setCartArr, isOpen, setIsOp
             setIsOpen={setIsOpen}
           />
           <Logout isOpen={openLogout} onClose={() => setOpenLogout(false)} />
+          <Searchbar searchItem={searchItem} setSearchItem={setSearchItem} searchShow={searchShow} setSearchShow={setSearchShow} />
 
         <div
           className={`

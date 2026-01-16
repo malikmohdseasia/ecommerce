@@ -147,7 +147,7 @@ const Home = () => {
       <div className=" mt-5 lg:mt-15.5 flex flex-col lg:flex-row  gap-5 justify-center items-center w-80 lg:w-full mx-auto overflow-hidden">
         {items1.map((item, index) => (
           <div key={index} className="flex flex-col gap-7.5 items-center ">
-            <img src={item.img} alt="" />
+            <img src={item.img} alt="" className="rounded-lg" />
             <p className="font-poppins font-semibold text-[18px] lg:text-[24px] text-home">
               {item.title}
             </p>
